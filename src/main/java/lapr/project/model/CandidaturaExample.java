@@ -130,7 +130,6 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 
 			//Obtain a new document
 			Document document = builder.newDocument();
-
 			document.appendChild(document.importNode(node, true));
 
 			NodeList elementsCandidatura = document.getElementsByTagName(ROOT_ELEMENT_NAME);
