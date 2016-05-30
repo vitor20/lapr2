@@ -1,4 +1,4 @@
-package lapr.project.model;
+package model;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
