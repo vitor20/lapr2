@@ -26,6 +26,7 @@ public class Exposicao
     private final List<Organizador> m_lOrganizadores;
     private final List<FAE> m_lFAEs;
     private final List<Decisao> m_lDecisoes;
+    private ListaOrganizadores listaOrganizadores;
     
     
     public Exposicao()
@@ -178,7 +179,7 @@ public class Exposicao
         return false;
     }
 
-    
-
-  
+    public ListaOrganizadores getListaOrganizadores(){
+        return this.listaOrganizadores;
+    }
 }
