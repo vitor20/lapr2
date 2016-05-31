@@ -34,14 +34,10 @@ public class RegistoUtilizadores {
             return false;
     }
     
-    private boolean validaUtilizador(Utilizador u)
+    public boolean validaUtilizador(Utilizador u)
     {
         ArrayList<Utilizador> lu = getUtilizadores();
-        
-        if (u.getNome()==null || u.getEmail()==null || u.getPassword()==null || u.getUsername()==null){
-            return false;
-        }
-        
+ 
         String [] tmp = u.getEmail().trim().split("@");
         if (tmp.length!=2){
             return false;
