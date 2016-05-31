@@ -32,11 +32,11 @@ public class CriarExposicaoController
         return this.m_exposicao = this.centro_exp.novaExposicao();
     }
     
-    public void setDados(String sTitulo, String sDescritivo, Date oDtInicio, Date oDtFim, String sLocal)
-    {
+    public void setDados(String sTitulo, String sDescritivo, Date oDtInicio, Date oDtFim, Date oDtInicioSub, Date oDtFimSub, String sLocal){
         this.m_exposicao.setTitulo(sTitulo);
         this.m_exposicao.setDescritivo(sDescritivo);
         this.m_exposicao.setPeriodo(oDtInicio,oDtFim);
+        this.m_exposicao.setPeriodoSubmissao(oDtInicio, oDtFim);
         this.m_exposicao.setLocal(sLocal);
     }
     

@@ -12,6 +12,7 @@ import expo.model.Utilizador;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.scripts.JO;
 
 /**
  *
@@ -23,8 +24,8 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     public CentroExposicoes ce;
     public Exposicao expo;
     public Utilizador uti;
-    
-    public CriarExposicaoUI(CentroExposicoes ce, Utilizador uti){
+
+    public CriarExposicaoUI(CentroExposicoes ce, Utilizador uti) {
         this.ce = ce;
         controller = new CriarExposicaoController(ce);
         this.expo = controller.novaExposicao();
@@ -216,12 +217,22 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ajuda_btActionPerformed
 
     private void confirmar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_btActionPerformed
-        if(titulo_txt.equals("") || descricao_txt.equals("") || data_inicio == null || data_fim == null || data_inicio_sub == null || data_fim_sub == null
-                || local_realizacao_txt.equals("")){
+        if (titulo_txt.equals("") || descricao_txt.equals("") || data_inicio == null || data_fim == null || data_inicio_sub == null || data_fim_sub == null
+                || local_realizacao_txt.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Existem dados em falta.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }else{
-            if(!this.expo.getListaOrganizadores().getListaOrganizadores().isEmpty()){
-                
+        } else if (!this.expo.getListaOrganizadores().getListaOrganizadores().isEmpty()) {
+
+            controller.setDados(titulo_txt.getText(), descricao_txt.getText(), data_inicio.getDate(), data_fim.getDate(), data_inicio_sub.getDate(), data_fim_sub.getDate(), local_realizacao_txt.getText());
+
+            try {
+                if (this.expo.valida()) {
+                    this.controller.registaExposicao();
+
+                    JOptionPane.showMessageDialog(rootPane, "Exposição criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                }
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao criar Exposição!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_confirmar_btActionPerformed
@@ -256,8 +267,8 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CentroExposicoes ce=new CentroExposicoes();
-                Utilizador uti= new Utilizador();
+                CentroExposicoes ce = new CentroExposicoes();
+                Utilizador uti = new Utilizador();
                 new CriarExposicaoUI(ce, uti).setVisible(true);
             }
         });
