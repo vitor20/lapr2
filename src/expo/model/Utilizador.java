@@ -7,6 +7,8 @@ public class Utilizador {
     private String m_sUserName;
     private String m_sPassword;
     private Boolean m_bRegistado;
+    private int numeroTabela;
+    private int nrCharsPassw;
 
     public Utilizador() {
         new Utilizador(null, null, null, null);
@@ -68,6 +70,14 @@ public class Utilizador {
         }
     }
 
+    public int getNumeroTabela() {
+        return numeroTabela;
+    }
+
+    public void setNumeroTabela(int numeroTabela) {
+        this.numeroTabela = numeroTabela;
+    }
+
     public String getPassword() {
         return m_sPassword;
     }
@@ -76,6 +86,14 @@ public class Utilizador {
         if (password != null) {
             this.m_sPassword = password;
         }
+    }
+
+    public int getNrCharsPassw() {
+        return nrCharsPassw;
+    }
+
+    public void setNrCharsPassw(int nrCharsPassw) {
+        this.nrCharsPassw = nrCharsPassw;
     }
 
     public Boolean getRegistado() {
@@ -92,6 +110,9 @@ public class Utilizador {
     }
 
     public boolean valida() {
+        if (getNome()==null || getEmail()==null || getPassword()==null || getUsername()==null){
+            return false;
+        }
         return true;
     }
 
