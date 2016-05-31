@@ -1,34 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
-/**
- *
- * @author Paulo Maio <pam@isep.ipp.pt>
- */
-public class Utilizador
-{
+public class Utilizador {
+
     private String m_sNome;
     private String m_sEmail;
     private String m_sUserName;
     private String m_sPassword;
     private Boolean m_bRegistado;
-    
-    public Utilizador()
-    {
+
+    public Utilizador() {
+        new Utilizador(null, null, null, null);
     }
-    
-    public Utilizador(String sNome, String sEmail, Boolean bRegistado)
-    {
-        this.m_sNome = sNome;
-        this.m_sEmail = sEmail;
-        this.m_sUserName = sEmail;
-        this.m_bRegistado = bRegistado;
+
+    public Utilizador(String m_sNome, String m_sEmail, String m_sUsername, String m_sPassword) {
+        setNome(m_sNome);
+        setEmail(m_sEmail);
+        setUsername(m_sUsername);
+        setPassword(m_sPassword);
+//        this.m_sNome = sNome;
+//        this.m_sEmail = sEmail;
+//        this.m_sUserName = sEmail;
+//        this.m_bRegistado = bRegistado;
     }
+
     /*
     public Utilizador(String sID, String sNome, String sEmail)
     {
@@ -36,14 +30,11 @@ public class Utilizador
         this.m_sEmail = sEmail;
         this.m_sUserName = sID;
     } */
-    
-    public boolean hasID(String strId)
-    {
+    public boolean hasID(String strId) {
         return m_sUserName.equalsIgnoreCase(strId);
     }
-    
-    public String getID()
-    {
+
+    public String getID() {
         return m_sUserName;
     }
 
@@ -52,7 +43,9 @@ public class Utilizador
     }
 
     public void setNome(String nome) {
-        this.m_sNome = nome;
+        if (nome != null) {
+            this.m_sNome = nome;
+        }
     }
 
     public String getEmail() {
@@ -60,7 +53,9 @@ public class Utilizador
     }
 
     public void setEmail(String email) {
-        this.m_sEmail = email;
+        if (email != null) {
+            this.m_sEmail = email;
+        }
     }
 
     public String getUsername() {
@@ -68,7 +63,9 @@ public class Utilizador
     }
 
     public void setUsername(String username) {
-        this.m_sUserName = username;
+        if (username != null) {
+            this.m_sUserName = username;
+        }
     }
 
     public String getPassword() {
@@ -76,7 +73,9 @@ public class Utilizador
     }
 
     public void setPassword(String password) {
-        this.m_sPassword = password;
+        if (password != null) {
+            this.m_sPassword = password;
+        }
     }
 
     public Boolean getRegistado() {
@@ -86,22 +85,28 @@ public class Utilizador
     public void setRegistado(Boolean registado) {
         this.m_bRegistado = registado;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("[%s, %s, %s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
     }
 
-    public boolean valida(){
+    public boolean valida() {
         return true;
     }
 
-    public boolean equals(Utilizador u)
-    {
-        if (this == u)
+    public Utilizador clone() {
+        return new Utilizador(this.getNome(), this.getUsername(), this.getPassword(), this.getEmail());
+    }
+
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
             return true;
-        if (u != null)
-            return hasID(u.m_sUserName);
-        return false;
+        }
+        if (outroObjeto == null || outroObjeto.getClass() != this.getClass()) {
+            return false;
+        }
+        Utilizador outroUtilizador = (Utilizador) outroObjeto;
+        return this.m_sNome.equalsIgnoreCase(outroUtilizador.m_sNome);
     }
 }
