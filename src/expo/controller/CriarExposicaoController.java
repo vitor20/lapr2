@@ -19,16 +19,17 @@ import java.util.List;
  */
 public class CriarExposicaoController
 {
-    private final CentroExposicoes m_oCE;
+    private final CentroExposicoes centro_exp;
     private Exposicao m_exposicao;
+    
     public CriarExposicaoController(CentroExposicoes ce)
     {
-        this.m_oCE = ce;
+        this.centro_exp = ce;
     }
     
-    public void novaExposicao()
+    public Exposicao novaExposicao()
     {
-        this.m_exposicao = this.m_oCE.novaExposicao();
+        return this.m_exposicao = this.centro_exp.novaExposicao();
     }
     
     public void setDados(String sTitulo, String sDescritivo, Date oDtInicio, Date oDtFim, String sLocal)
@@ -41,7 +42,7 @@ public class CriarExposicaoController
     
     public List<Utilizador> getListaUtilizadores()
     {
-        return this.m_oCE.getUtilizadores();
+        return this.centro_exp.getUtilizadores();
     }
     
     public void addOrganizador(Utilizador u)
@@ -51,12 +52,12 @@ public class CriarExposicaoController
     
     public boolean validaExposicao()
     {
-        return this.m_oCE.validaExposicao(m_exposicao);
+        return this.centro_exp.validaExposicao(m_exposicao);
     }
     
     public boolean registaExposicao()
     {
-        return this.m_oCE.registaExposicao(m_exposicao);
+        return this.centro_exp.registaExposicao(m_exposicao);
     }
 
     public String getExposicaoString()
