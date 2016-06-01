@@ -34,6 +34,7 @@ public class Exposicao {
         this.m_lOrganizadores = new ArrayList<>();
         this.m_lDecisoes = new ArrayList<>();
         this.m_lFAEs = new ArrayList<>();
+        this.listaOrganizadores = new ListaOrganizadores();
     }
 
     public void setTitulo(String titulo) {
@@ -123,16 +124,16 @@ public class Exposicao {
     public boolean valida() {
         if (!titulo.matches("[a-zA-Z]+")) {
             return false;
+        } else if (!descricao.matches("[a-zA-Z]+")) {
+            return false;
+        } else if (!validarDatas()) {
+            return false;
         } else {
-            if (!descricao.matches("[a-zA-Z]+")) {
+            if (!local.matches("[a-zA-Z]+")) {
                 return false;
-            } else if (!validarDatas()) {
-                return true;
-            } else if (!local.matches("[a-zA-Z]+")) {
-                return true;
             }
-            return true;
         }
+        return true;
     }
 
     private boolean addOrganizador(Organizador o) {

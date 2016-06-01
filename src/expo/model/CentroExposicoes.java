@@ -17,12 +17,12 @@ public class CentroExposicoes {
 
     private RegistoUtilizadores m_RegistoUtilizadores;
     private final List<Utilizador> m_lUtilizadores;
-    private final List<Exposicao> m_lExposicoes;
+    private final ArrayList<Exposicao> listaExposicoes;
 
     public CentroExposicoes() {
         m_RegistoUtilizadores = new RegistoUtilizadores();
         this.m_lUtilizadores = new ArrayList<>();
-        this.m_lExposicoes = new ArrayList<>();
+        this.listaExposicoes = new ArrayList<>();
         fillInData();
     }
 
@@ -63,11 +63,15 @@ public class CentroExposicoes {
     }
 
     public boolean registaExposicao(Exposicao e) {
-        return this.addExposicao(e);
+        if(validaExposicao(e)){
+            return this.addExposicao(e);
+        }else{
+            return false;
+        }
     }
 
     private boolean addExposicao(Exposicao e) {
-        return this.m_lExposicoes.add(e);
+        return this.listaExposicoes.add(e);
     }
 
     private void fillInData() {
@@ -81,7 +85,7 @@ public class CentroExposicoes {
     public List<Exposicao> getListaExposicoesDoFAE(Utilizador u) {
         List<Exposicao> l_ExpDoFAE = new ArrayList();
 
-        for (Exposicao m : this.m_lExposicoes) {
+        for (Exposicao m : this.listaExposicoes) {
             if (m.getFAE(u) != null) {
                 l_ExpDoFAE.add(m);
             }
@@ -105,7 +109,7 @@ public class CentroExposicoes {
         Utilizador u = getUtilizador(strId);
 
         if (u != null) {
-            for (Iterator<Exposicao> it = this.m_lExposicoes.listIterator(); it.hasNext();) {
+            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
                 Exposicao e = it.next();
 
                 if (e.hasOrganizador(u)) {

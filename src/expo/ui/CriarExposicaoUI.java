@@ -9,10 +9,7 @@ import expo.controller.CriarExposicaoController;
 import expo.model.CentroExposicoes;
 import expo.model.Exposicao;
 import expo.model.Utilizador;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import jdk.nashorn.internal.scripts.JO;
 
 /**
  *
@@ -58,11 +55,12 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         adicionar_organizadores_bt = new javax.swing.JButton();
         confirmar_bt = new javax.swing.JButton();
         cancelar_bt = new javax.swing.JButton();
-        ajuda_bt = new javax.swing.JButton();
+        apagar_bt = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         local_realizacao_txt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         descricao_txt = new javax.swing.JTextArea();
+        ajuda_bt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,10 +97,10 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             }
         });
 
-        ajuda_bt.setText("Ajuda");
-        ajuda_bt.addActionListener(new java.awt.event.ActionListener() {
+        apagar_bt.setText("Apagar");
+        apagar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajuda_btActionPerformed(evt);
+                apagar_btActionPerformed(evt);
             }
         });
 
@@ -111,6 +109,19 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         descricao_txt.setColumns(20);
         descricao_txt.setRows(5);
         jScrollPane1.setViewportView(descricao_txt);
+        descricao_txt.setWrapStyleWord(true);
+        descricao_txt.setLineWrap(true);
+
+        ajuda_bt.setBorderPainted(false);
+        ajuda_bt.setContentAreaFilled(false);
+        ajuda_bt.setFocusPainted(false);
+        ajuda_bt.setOpaque(false);
+        ajuda_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/help.png"))); // NOI18N
+        ajuda_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajuda_btActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,57 +132,65 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(titulo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1)))
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(local_realizacao_txt)
-                            .addGap(18, 18, 18)
-                            .addComponent(adicionar_organizadores_bt))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(titulo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(data_inicio_sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(data_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
+                                    .addComponent(local_realizacao_txt)
                                     .addGap(18, 18, 18)
-                                    .addComponent(data_fim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(adicionar_organizadores_bt))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(data_fim_sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(20, 20, 20))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(data_inicio_sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(data_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(data_fim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(data_fim_sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ajuda_bt)
+                        .addGap(32, 32, 32))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(confirmar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(cancelar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(ajuda_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(apagar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(ajuda_bt))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -197,11 +216,11 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                     .addComponent(adicionar_organizadores_bt)
                     .addComponent(jLabel8)
                     .addComponent(local_realizacao_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmar_bt)
                     .addComponent(cancelar_bt)
-                    .addComponent(ajuda_bt))
+                    .addComponent(apagar_bt))
                 .addGap(25, 25, 25))
         );
 
@@ -212,9 +231,15 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelar_btActionPerformed
 
-    private void ajuda_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajuda_btActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Funcionalidade para criação de novas Exposições. Todos os campos são obrigatórios.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_ajuda_btActionPerformed
+    private void apagar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagar_btActionPerformed
+        this.titulo_txt.setText("");
+        this.descricao_txt.setText("");
+        this.data_inicio.setCalendar(null);
+        this.data_fim.setCalendar(null);
+        this.data_inicio_sub.setCalendar(null);
+        this.data_fim_sub.setCalendar(null);
+        this.local_realizacao_txt.setText("");
+    }//GEN-LAST:event_apagar_btActionPerformed
 
     private void confirmar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_btActionPerformed
         if (titulo_txt.equals("") || descricao_txt.equals("") || data_inicio == null || data_fim == null || data_inicio_sub == null || data_fim_sub == null
@@ -225,17 +250,21 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             controller.setDados(titulo_txt.getText(), descricao_txt.getText(), data_inicio.getDate(), data_fim.getDate(), data_inicio_sub.getDate(), data_fim_sub.getDate(), local_realizacao_txt.getText());
 
             try {
-                if (this.expo.valida()) {
-                    this.controller.registaExposicao();
+                this.controller.registaExposicao();
 
-                    JOptionPane.showMessageDialog(rootPane, "Exposição criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                }
+                JOptionPane.showMessageDialog(rootPane, "Exposição criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             } catch (Exception e) {
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao criar Exposição!", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Erro ao criar Exposição!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Tem que inserir Organizadores!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_confirmar_btActionPerformed
+
+    private void ajuda_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajuda_btActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Funcionalidade para criação de novas Exposições. Todos os campos são obrigatórios.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_ajuda_btActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,6 +306,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionar_organizadores_bt;
     private javax.swing.JButton ajuda_bt;
+    private javax.swing.JButton apagar_bt;
     private javax.swing.JButton cancelar_bt;
     private javax.swing.JButton confirmar_bt;
     private com.toedter.calendar.JDateChooser data_fim;
