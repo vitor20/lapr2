@@ -8,6 +8,7 @@ package expo.ui;
 import expo.controller.CriarExposicaoController;
 import expo.model.CentroExposicoes;
 import expo.model.Exposicao;
+import expo.model.RegistoUtilizadores;
 import expo.model.Utilizador;
 import javax.swing.JOptionPane;
 
@@ -21,19 +22,22 @@ public class DadosOrganizadorUI extends javax.swing.JFrame {
     private Exposicao expo;
     private Utilizador uti;
     private CriarExposicaoController controller;
-    
+    private RegistoUtilizadores registoUti;
+
     /**
      * Creates new form DadosOrganizadorUI
+     *
      * @param ce
      * @param expo
      * @param uti
      * @param controller
      */
-    public DadosOrganizadorUI(CentroExposicoes ce, Exposicao expo, Utilizador uti, CriarExposicaoController controller){
+    public DadosOrganizadorUI(CentroExposicoes ce, Exposicao expo, Utilizador uti, CriarExposicaoController controller) {
         this.ce = ce;
         this.expo = expo;
         this.uti = uti;
         this.controller = controller;
+        this.registoUti = ce.getRegistoUtilizadores();
         initComponents();
         setVisible(true);
     }
@@ -63,16 +67,33 @@ public class DadosOrganizadorUI extends javax.swing.JFrame {
 
         jLabel1.setText("Username:");
 
+        username_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                username_txtKeyReleased(evt);
+            }
+        });
+
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("OU");
 
         jLabel3.setText("E-Mail:");
+
+        email_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                email_txtKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addOrganizer.png"))); // NOI18N
         jLabel4.setText("   Adicionar Organizador");
 
         adicionar_bt.setText("Adicionar");
+        adicionar_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionar_btActionPerformed(evt);
+            }
+        });
 
         concluido_bt.setText("Concluído");
         concluido_bt.addActionListener(new java.awt.event.ActionListener() {
@@ -137,9 +158,9 @@ public class DadosOrganizadorUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(ajuda_bt))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajuda_bt)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -171,19 +192,65 @@ public class DadosOrganizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelar_btActionPerformed
 
     private void concluido_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_concluido_btActionPerformed
-        if(this.username_txt.getText().equals("") || this.email_txt.getText().equals("")){
+        if (!this.username_txt.getText().equals("") || !this.email_txt.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Existem dados por adicionar!", "Erro", JOptionPane.ERROR_MESSAGE);
-            if(!this.username_txt.getText().equals("")){
+            if (!this.username_txt.getText().equals("")) {
                 this.username_txt.requestFocus();
-            }else if(!this.email_txt.getText().equals("")){
+            } else if (!this.email_txt.getText().equals("")) {
                 this.email_txt.requestFocus();
             }
-        }else if(this.expo.getListaOrganizadores().getListaOrganizadores().isEmpty()){
+        } else if (this.expo.getListaOrganizadores().getListaOrganizadores().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Não foi introduzido nenhum Organizador!", "Erro", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             dispose();
         }
     }//GEN-LAST:event_concluido_btActionPerformed
+
+    private void adicionar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionar_btActionPerformed
+        int cont=0;
+        if (this.username_txt.getText().equals("") && this.email_txt.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Dados por introduzir!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (!this.email_txt.getText().equals("")) {
+            for (Utilizador uti : this.registoUti.getUtilizadores()) {
+                if (this.email_txt.toString().equalsIgnoreCase(uti.getEmail())) {
+                    controller.addOrganizador(uti);
+                    JOptionPane.showMessageDialog(null, "O Organizador foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                }
+                cont++;
+            }
+            if(cont==this.registoUti.getUtilizadores().size()){
+                JOptionPane.showMessageDialog(rootPane, "Utilizador inexistente!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (!this.username_txt.getText().equals("")) {
+            for (Utilizador uti : this.registoUti.getUtilizadores()) {
+                if (this.email_txt.toString().equalsIgnoreCase(uti.getID())) {
+                    controller.addOrganizador(uti);
+                    JOptionPane.showMessageDialog(null, "O Organizador foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                }
+            }
+            if(cont==this.registoUti.getUtilizadores().size()){
+                JOptionPane.showMessageDialog(rootPane, "Utilizador inexistente!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_adicionar_btActionPerformed
+
+    private void username_txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_txtKeyReleased
+        if (this.username_txt.getText().length() > 0) {
+            this.email_txt.setEditable(false);
+        } else {
+            this.email_txt.setEditable(true);
+        }
+    }//GEN-LAST:event_username_txtKeyReleased
+
+    private void email_txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_email_txtKeyReleased
+        if (this.email_txt.getText().length() > 0) {
+            this.username_txt.setEditable(false);
+        } else {
+            this.username_txt.setEditable(true);
+        }
+    }//GEN-LAST:event_email_txtKeyReleased
 
     /**
      * @param args the command line arguments

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Nuno
  */
-public class CriarExposicaoUI extends javax.swing.JFrame {
+public class CriarExposicaoUI extends javax.swing.JFrame{
 
     public CriarExposicaoController controller;
     public CentroExposicoes ce;
