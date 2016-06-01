@@ -25,7 +25,8 @@ public class CriarExposicaoController {
     }
 
     public Exposicao novaExposicao() {
-        return this.m_exposicao = this.centro_exp.novaExposicao();
+     
+        return this.m_exposicao = this.centro_exp.getRegistoExposicoes().novaExposicao();
     }
 
     public void setDados(String sTitulo, String sDescritivo, Date oDtInicio, Date oDtFim, Date oDtInicioSub, Date oDtFimSub, String sLocal) {
@@ -45,11 +46,11 @@ public class CriarExposicaoController {
     }
 
     public boolean validaExposicao() {
-        return this.centro_exp.validaExposicao(m_exposicao);
+        return this.centro_exp.getRegistoExposicoes().validaExposicao(m_exposicao);
     }
 
     public Exposicao registaExposicao() {
-        if (this.centro_exp.registaExposicao(m_exposicao)) {
+        if (this.centro_exp.getRegistoExposicoes().registaExposicao(m_exposicao)) {
             return this.m_exposicao;
         }
         return null;

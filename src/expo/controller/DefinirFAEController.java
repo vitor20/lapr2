@@ -31,7 +31,7 @@ public class DefinirFAEController
 
     public List<Exposicao> getExposicoesOrganizador(String strId)
     {
-        return m_centro_exposicoes.getExposicaoOrganizador(strId);
+        return m_centro_exposicoes.getRegistoExposicoes().getExposicaoOrganizador(strId);
     }
     
     public List<Utilizador> getUtilizadores()

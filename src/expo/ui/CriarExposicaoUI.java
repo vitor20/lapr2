@@ -82,6 +82,11 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         jLabel7.setText("Data Fim Submissão:");
 
         adicionar_organizadores_bt.setText("Adicionar Organizadores");
+        adicionar_organizadores_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionar_organizadores_btActionPerformed(evt);
+            }
+        });
 
         confirmar_bt.setText("Confirmar");
         confirmar_bt.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +270,10 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     private void ajuda_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajuda_btActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Funcionalidade para criação de novas Exposições. Todos os campos são obrigatórios.", "Informação", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_ajuda_btActionPerformed
+
+    private void adicionar_organizadores_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionar_organizadores_btActionPerformed
+        //DadosOrganizadorUI dadosOrganizador = new DadosOrganizadorUI(this.ce, this.expo, this.uti, this.controller);
+    }//GEN-LAST:event_adicionar_organizadores_btActionPerformed
 
     /**
      * @param args the command line arguments

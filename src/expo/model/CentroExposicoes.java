@@ -17,17 +17,13 @@ public class CentroExposicoes {
 
     private RegistoUtilizadores m_RegistoUtilizadores;
     private final List<Utilizador> m_lUtilizadores;
-    private final ArrayList<Exposicao> listaExposicoes;
+    private RegistoExposicoes registo_expo;
 
     public CentroExposicoes() {
         m_RegistoUtilizadores = new RegistoUtilizadores();
         this.m_lUtilizadores = new ArrayList<>();
-        this.listaExposicoes = new ArrayList<>();
+        this.registo_expo = new RegistoExposicoes();
         fillInData();
-    }
-
-    public Exposicao novaExposicao() {
-        return new Exposicao();
     }
 
     public Utilizador novoUtilizador() {
@@ -54,44 +50,12 @@ public class CentroExposicoes {
         return this.m_lUtilizadores;
     }
 
-    public boolean validaExposicao(Exposicao e) {
-        if (e.valida()) {
-            // Introduzir as validações aqui
-            return true;
-        }
-        return false;
-    }
-
-    public boolean registaExposicao(Exposicao e) {
-        if(validaExposicao(e)){
-            return this.addExposicao(e);
-        }else{
-            return false;
-        }
-    }
-
-    private boolean addExposicao(Exposicao e) {
-        return this.listaExposicoes.add(e);
-    }
-
     private void fillInData() {
         // Dados de Teste
         //Preenche alguns utilizadore
         for (Integer i = 1; i <= 4; i++) {
             //this.m_lUtilizadores.add(new Utilizador("Utilizador " + i.toString(), "mail" + i.toString()+"@exposicoes.pt", Boolean.TRUE ));
         }
-    }
-
-    public List<Exposicao> getListaExposicoesDoFAE(Utilizador u) {
-        List<Exposicao> l_ExpDoFAE = new ArrayList();
-
-        for (Exposicao m : this.listaExposicoes) {
-            if (m.getFAE(u) != null) {
-                l_ExpDoFAE.add(m);
-            }
-
-        }
-        return l_ExpDoFAE;
     }
 
     public Utilizador getUtilizador(String strId) {
@@ -101,23 +65,6 @@ public class CentroExposicoes {
             }
         }
         return null;
-    }
-
-    public List<Exposicao> getExposicaoOrganizador(String strId) {
-        List<Exposicao> leOrganizador = new ArrayList<Exposicao>();
-
-        Utilizador u = getUtilizador(strId);
-
-        if (u != null) {
-            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
-                Exposicao e = it.next();
-
-                if (e.hasOrganizador(u)) {
-                    leOrganizador.add(e);
-                }
-            }
-        }
-        return leOrganizador;
     }
 
     public List<Utilizador> getUtilizadoresNaoRegistados() {
@@ -146,5 +93,9 @@ public class CentroExposicoes {
 
     public RegistoUtilizadores getRegistoUtilizadores() {
         return this.m_RegistoUtilizadores;
+    }
+    
+    public RegistoExposicoes getRegistoExposicoes() {
+        return this.registo_expo;
     }
 }

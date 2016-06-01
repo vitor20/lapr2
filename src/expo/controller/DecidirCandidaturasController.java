@@ -29,7 +29,7 @@ public class DecidirCandidaturasController {
     }
 
     public List<Exposicao> getListaExposicoesDoFAE(Utilizador u) {
-        return this.m_oCE.getListaExposicoesDoFAE(u);
+        return this.m_oCE.getRegistoExposicoes().getListaExposicoesDoFAE(u);
     }
 
     public List<Decisao> selecionaExposicao(Exposicao exposicao, Utilizador u) {

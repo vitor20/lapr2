@@ -206,6 +206,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar Organizadores"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionar_organizadores_btActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="confirmar_bt">
       <Properties>
