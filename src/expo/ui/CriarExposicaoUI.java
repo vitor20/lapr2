@@ -62,7 +62,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         descricao_txt = new javax.swing.JTextArea();
         ajuda_bt = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/criar.png"))); // NOI18N
@@ -230,6 +230,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_btActionPerformed
@@ -268,11 +269,11 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmar_btActionPerformed
 
     private void ajuda_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajuda_btActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Funcionalidade para criação de novas Exposições. Todos os campos são obrigatórios.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(rootPane, "Funcionalidade para criação de novas Exposições.\nTodos os campos são obrigatórios.", "Informação", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_ajuda_btActionPerformed
 
     private void adicionar_organizadores_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionar_organizadores_btActionPerformed
-        //DadosOrganizadorUI dadosOrganizador = new DadosOrganizadorUI(this.ce, this.expo, this.uti, this.controller);
+        DadosOrganizadorUI dadosOrganizador = new DadosOrganizadorUI(this.ce, this.expo, this.uti, this.controller);
     }//GEN-LAST:event_adicionar_organizadores_btActionPerformed
 
     /**
