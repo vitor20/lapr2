@@ -68,4 +68,7 @@ public class RegistoExposicoes {
 //        }
         return leOrganizador;
     }
+     public ArrayList<Exposicao> getExposicoes() {
+        return listaExposicoes;
+    }
 }
