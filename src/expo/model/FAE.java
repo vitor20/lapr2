@@ -27,6 +27,14 @@ public class FAE {
         // Introduzir as validações aqui
         return true;
     }
+      
+      public void setUtilizador(Utilizador m_oUFae) {
+        this.m_oUFae = m_oUFae;
+    }
+
+    public Utilizador getUtilizador() {
+        return m_oUFae;
+    }
     
     @Override
     public String toString()
