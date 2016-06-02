@@ -5,7 +5,6 @@
  */
 package expo.model;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -30,6 +29,7 @@ public class Exposicao {
     private final List<Decisao> m_lDecisoes;
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
+    private List<Atribuicao> listaAtribuicoes;
 
     public Exposicao() {
         this.m_lOrganizadores = new ArrayList<>();
@@ -37,6 +37,7 @@ public class Exposicao {
         this.m_lFAEs = new ArrayList<>();
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaAtribuicoes = new ArrayList<>();
     }
 
     public void setTitulo(String titulo) {
@@ -130,10 +131,8 @@ public class Exposicao {
             return false;
         } else if (!validarDatas()) {
             return false;
-        } else {
-            if (!local.matches("[a-zA-Z]+")) {
-                return false;
-            }
+        } else if (!local.matches("[a-zA-Z]+")) {
+            return false;
         }
         return true;
     }
@@ -189,8 +188,8 @@ public class Exposicao {
     public ListaOrganizadores getListaOrganizadores() {
         return this.listaOrganizadores;
     }
-    
-    public ListaDemonstracoes getListaDemonstracoes(){
+
+    public ListaDemonstracoes getListaDemonstracoes() {
         return this.listaDemonstracoes;
     }
 
@@ -200,5 +199,31 @@ public class Exposicao {
             return true;
         }
         return false;
+    }
+
+    public void addAtribuicao(Atribuicao a) {
+        listaAtribuicoes.add(a);
+    }
+
+    public List<Atribuicao> getAtribuicoes(String id) {
+        List<Atribuicao> atr = new ArrayList<>();
+        for (Atribuicao at : listaAtribuicoes) {
+            if (at.getFae().getUtilizador().getUsername().equals(id)) {
+                atr.add(at);
+            }
+        }
+        return atr;
+    }
+
+    public List<Atribuicao> getListaAtribuicoes() {
+        return listaAtribuicoes;
+    }
+
+    public Atribuicao novaAtribuicao() {
+        return new Atribuicao();
+    }
+
+    public void addAtribuicoes(List<Atribuicao> atrs) {
+        listaAtribuicoes.addAll(atrs);
     }
 }
