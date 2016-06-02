@@ -9,7 +9,10 @@ import expo.model.CentroExposicoes;
 import expo.model.Demonstracao;
 import expo.model.Exposicao;
 import expo.model.ListaDemonstracoes;
+import expo.model.ListaRecursosDemonstracao;
+import expo.model.Recurso;
 import expo.model.RegistoExposicoes;
+import expo.model.RegistoRecurso;
 import java.util.List;
 
 /**
@@ -21,7 +24,10 @@ public class CriarDemonstracoesController {
     private RegistoExposicoes m_registoExposicoes;
     private Exposicao exposicao;
     private Demonstracao demonstracao;
+    private RegistoRecurso registoRecurso;
+    private ListaRecursosDemonstracao listaRecursoDemonstracao;
     private ListaDemonstracoes m_listaDemonstracoes;
+
     
      public CriarDemonstracoesController(CentroExposicoes centro) {
         m_centro = centro;
@@ -46,6 +52,14 @@ public class CriarDemonstracoesController {
           demonstracao.setDescricao(desc);
       }
       
+      public RegistoRecurso getListaRecursos(){
+          return this.registoRecurso;
+      }
+      
+      public void addRecursoDemonstracao(Recurso rec){
+          this.listaRecursoDemonstracao=demonstracao.getListaRecursos();
+ 
+      }
       
 
     

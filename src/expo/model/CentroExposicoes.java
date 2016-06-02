@@ -18,6 +18,7 @@ public class CentroExposicoes {
     private RegistoUtilizadores m_RegistoUtilizadores;
     private final List<Utilizador> m_lUtilizadores;
     private RegistoExposicoes registo_expo;
+    private RegistoRecurso registo_recurso;
 
     public CentroExposicoes() {
         m_RegistoUtilizadores = new RegistoUtilizadores();
@@ -93,6 +94,10 @@ public class CentroExposicoes {
 
     public RegistoUtilizadores getRegistoUtilizadores() {
         return this.m_RegistoUtilizadores;
+    }
+    
+    public RegistoRecurso getRegistoRecurso(){
+        return this.registo_recurso;
     }
     
     public RegistoExposicoes getRegistoExposicoes() {
