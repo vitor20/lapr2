@@ -43,4 +43,7 @@ public class Organizador
         }
         return false;
     }
+     public Utilizador getUtilizador() {
+        return m_oUtilizador;
+    }
 }
