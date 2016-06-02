@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class CentroExposicoes {
 
+    private final List<MecanismoAtribuicao> listaMecanismos;
     private RegistoUtilizadores m_RegistoUtilizadores;
     private final List<Utilizador> m_lUtilizadores;
     private RegistoExposicoes registo_expo;
@@ -24,6 +25,7 @@ public class CentroExposicoes {
         m_RegistoUtilizadores = new RegistoUtilizadores();
         this.m_lUtilizadores = new ArrayList<>();
         this.registo_expo = new RegistoExposicoes();
+        listaMecanismos = new ArrayList<>();
         fillInData();
     }
 
@@ -88,6 +90,10 @@ public class CentroExposicoes {
         return null;
     }
 
+    public List<MecanismoAtribuicao> getListaMecanismos() {
+        return listaMecanismos;
+    }
+
     public void confirmaRegistoUtilizador(Utilizador u) {
         u.setRegistado(true);
     }
@@ -95,11 +101,11 @@ public class CentroExposicoes {
     public RegistoUtilizadores getRegistoUtilizadores() {
         return this.m_RegistoUtilizadores;
     }
-    
-    public RegistoRecurso getRegistoRecurso(){
+
+    public RegistoRecurso getRegistoRecurso() {
         return this.registo_recurso;
     }
-    
+
     public RegistoExposicoes getRegistoExposicoes() {
         return this.registo_expo;
     }
