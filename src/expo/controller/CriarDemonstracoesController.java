@@ -58,7 +58,11 @@ public class CriarDemonstracoesController {
       
       public void addRecursoDemonstracao(Recurso rec){
           this.listaRecursoDemonstracao=demonstracao.getListaRecursos();
- 
+          this.listaRecursoDemonstracao.addRecurso(rec);
+      }
+      
+      public void registaDemonstracao(){
+          this.m_listaDemonstracoes.addDemonstracao(demonstracao);
       }
       
 

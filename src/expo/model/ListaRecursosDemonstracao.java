@@ -32,6 +32,19 @@ public class ListaRecursosDemonstracao {
     public void setListaRecursosDemontracoes(List<Recurso> list){
         this.m_listaRecursos=list;
     }
+    
+    public void addRecurso(Recurso rec){
+        if(valida(rec)){
+            this.m_listaRecursos.add(rec);
+        }
+    }
+    
+    public boolean valida(Recurso rec){
+        if(rec!=null){
+            return true;
+        }
+        return false;
+    }
         
     
 }
