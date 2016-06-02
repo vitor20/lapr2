@@ -25,6 +25,9 @@ public class ListaDemonstracoes {
         m_listDemonstracoes=new ArrayList<Demonstracao>();
     }
     
+    public Demonstracao novaDemonstracao(){
+        return new Demonstracao();
+    }
     public List<Demonstracao> getListaDemonstracoes(){
         return this.m_listDemonstracoes;
     }
@@ -33,4 +36,18 @@ public class ListaDemonstracoes {
         this.m_listDemonstracoes=lista;
     }
     
+    public void addDemonstracao(Demonstracao demo){
+        if(valida(demo)){
+            this.m_listDemonstracoes.add(demo);
+        }
+    }
+    
+    public boolean valida(Demonstracao demo){
+        for(Demonstracao dem : this.m_listDemonstracoes){
+            if(dem.equals(demo)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

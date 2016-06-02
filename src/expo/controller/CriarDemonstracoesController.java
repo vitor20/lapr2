@@ -34,8 +34,19 @@ public class CriarDemonstracoesController {
       
       public void setExposicão(Exposicao exp){
           this.exposicao=exp;
-          //demonstracao=this.exposicao.ge
+          m_listaDemonstracoes=this.exposicao.getListaDemonstracoes();
       }
+      
+      public void novaDemonstracao(){
+          demonstracao=m_listaDemonstracoes.novaDemonstracao();
+      }
+      
+      public void setDados(String cod, String desc){
+          demonstracao.setCodigo(cod);
+          demonstracao.setDescricao(desc);
+      }
+      
+      
 
     
 }

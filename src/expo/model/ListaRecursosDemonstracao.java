@@ -5,10 +5,33 @@
  */
 package expo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author VITOR
  */
 public class ListaRecursosDemonstracao {
+    private Demonstracao m_demonstracao;
+    private List<Recurso> m_listaRecursos;
+    
+    public ListaRecursosDemonstracao(){
+        m_listaRecursos= new ArrayList<Recurso>();
+    }
+    
+    public ListaRecursosDemonstracao(Demonstracao dem){
+        this.m_demonstracao=dem;
+        m_listaRecursos=new ArrayList<Recurso>();
+    }
+    
+    public List<Recurso> getListaRecursosDemonstracao(){
+        return this.m_listaRecursos;
+    }
+        
+    public void setListaRecursosDemontracoes(List<Recurso> list){
+        this.m_listaRecursos=list;
+    }
+        
     
 }

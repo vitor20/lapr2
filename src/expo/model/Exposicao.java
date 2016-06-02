@@ -29,12 +29,14 @@ public class Exposicao {
     private final List<FAE> m_lFAEs;
     private final List<Decisao> m_lDecisoes;
     private ListaOrganizadores listaOrganizadores;
+    private ListaDemonstracoes listaDemonstracoes;
 
     public Exposicao() {
         this.m_lOrganizadores = new ArrayList<>();
         this.m_lDecisoes = new ArrayList<>();
         this.m_lFAEs = new ArrayList<>();
         this.listaOrganizadores = new ListaOrganizadores();
+        this.listaDemonstracoes = new ListaDemonstracoes();
     }
 
     public void setTitulo(String titulo) {
@@ -186,6 +188,10 @@ public class Exposicao {
 
     public ListaOrganizadores getListaOrganizadores() {
         return this.listaOrganizadores;
+    }
+    
+    public ListaDemonstracoes getListaDemonstracoes(){
+        return this.listaDemonstracoes;
     }
 
     private boolean validarDatas() {
