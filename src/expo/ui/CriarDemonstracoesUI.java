@@ -8,10 +8,12 @@ package expo.ui;
 import expo.controller.CriarDemonstracoesController;
 import expo.model.CentroExposicoes;
 import expo.model.Exposicao;
+import expo.model.Recurso;
 import expo.model.Utilizador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +25,8 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
     private CentroExposicoes centro;
     private Utilizador organizador;
     private CriarDemonstracoesController controller;
+    private DefaultListModel modeloListaRecursos;
+    private DefaultListModel modeloListaRecursosAdicionados;
     private DefaultComboBoxModel<Exposicao> modeloComboBoxExposicao;
     
     public CriarDemonstracoesUI(CentroExposicoes ce,Utilizador utl) {
@@ -30,7 +34,12 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
         this.centro=ce;
         this.organizador=utl;
         controller=new CriarDemonstracoesController(centro);
+        modeloListaRecursosAdicionados= new DefaultListModel();
+        modeloListaRecursos= new DefaultListModel();
+        jListListaRecursos.setModel(modeloListaRecursos);
+        jListRecursosAdicionados.setModel(modeloListaRecursosAdicionados);
         modeloComboBoxExposicao= new DefaultComboBoxModel();
+        jComboBoxExposicoes.setModel(modeloComboBoxExposicao);
     }
 
     /**
@@ -109,6 +118,11 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
         jLabelListaRecursos.setText("Lista de recursos");
 
         jButtonRegistarDemonstracao.setText("Registar Demonstração");
+        jButtonRegistarDemonstracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistarDemonstracaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,8 +202,29 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdicionarRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarRecursoActionPerformed
-        // TODO add your handling code here:
+        boolean listaRecursos = true;
+        if(controller.getListaRecursos().getListaRecursos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Não existem recursos definidos", "Adicionar demonstração", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            for(Recurso rec : controller.getListaRecursos().getListaRecursos()){
+                this.modeloListaRecursos.addElement(rec.toString());
+            
+            }
+        }
+        jButtonAdicionarRecurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.addRecursoDemonstracao((Recurso)jListListaRecursos.getSelectedValue());
+                modeloListaRecursos.removeElement(jListListaRecursos.getSelectedValue());
+                modeloListaRecursosAdicionados.addElement(jListListaRecursos.getSelectedValue());
+            }
+        });
     }//GEN-LAST:event_jButtonAdicionarRecursoActionPerformed
+
+    private void jButtonRegistarDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarDemonstracaoActionPerformed
+        
+        controller.setDados(jTextFieldCodigoDemonstracao.getText(),jTextAreaDescricaoDemonstracao.getText());
+    }//GEN-LAST:event_jButtonRegistarDemonstracaoActionPerformed
     
      private boolean escolherEvento() {
         boolean escolheeventos = true;
