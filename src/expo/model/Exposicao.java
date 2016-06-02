@@ -5,7 +5,7 @@
  */
 package expo.model;
 
-import expo.model.FAE;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -154,11 +154,11 @@ public class Exposicao {
         return sTxt;
     }
 
-    public boolean hasOrganizador(Utilizador u) {
+    public boolean hasOrganizador(String id) {
         for (Iterator<Organizador> it = this.m_lOrganizadores.listIterator(); it.hasNext();) {
             Organizador org = it.next();
 
-            if (org.isUtilizador(u)) {
+            if (org.getUtilizador().hasID(id)) {
                 return true;
             }
         }
