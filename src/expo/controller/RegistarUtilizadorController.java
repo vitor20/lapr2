@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package expo.controller;
 
 import expo.model.CentroExposicoes;
@@ -25,8 +21,8 @@ public class RegistarUtilizadorController {
         m_registo = m_exp.getRegistoUtilizadores();
     }
 
-    public void novoUtilizador() {
-        m_utilizador = m_registo.novoUtilizador();
+    public Utilizador novoUtilizador() {
+        return m_utilizador = m_registo.novoUtilizador();
     }
 
 

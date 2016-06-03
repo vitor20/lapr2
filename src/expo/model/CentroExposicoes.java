@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package expo.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- *
- * @author Paulo Maio <pam@isep.ipp.pt>
- */
+
 public class CentroExposicoes {
 
     private final List<MecanismoAtribuicao> listaMecanismos;
@@ -29,25 +22,25 @@ public class CentroExposicoes {
         fillInData();
     }
 
-    public Utilizador novoUtilizador() {
-        return new Utilizador();
-    }
-
-    public boolean registaUtilizador(Utilizador u) {
-        if (validaUtilizador(u)) {
-            addUtilizador(u);
-            return true;
-        }
-        return false;
-    }
+//    public Utilizador novoUtilizador() {
+//        return new Utilizador();
+//    }
+//
+//    public boolean registaUtilizador(Utilizador u) {
+//        if (validaUtilizador(u)) {
+//            addUtilizador(u);
+//            return true;
+//        }
+//        return false;
+//    }
 
     private boolean validaUtilizador(Utilizador u) {
         return !m_lUtilizadores.contains(u);
     }
 
-    private void addUtilizador(Utilizador u) {
-        m_lUtilizadores.add(u);
-    }
+//    private void addUtilizador(Utilizador u) {
+//        m_lUtilizadores.add(u);
+//    }
 
     public List<Utilizador> getUtilizadores() {
         return this.m_lUtilizadores;
