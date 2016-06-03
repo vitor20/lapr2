@@ -34,6 +34,6 @@ public class AlterarUtilizadorController {
         novoUti.setEmail(email);
         novoUti.setPassword(password);
         
-        return true;//this.ce.getRegistoUtilizadores();
+        return this.ce.getRegistoUtilizadores().alteraUtilizador(uti, novoUti);
     }
 }

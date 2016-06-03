@@ -70,11 +70,13 @@ public class RegistoUtilizadores {
             List<Utilizador> lstUtilizadores = new ArrayList<Utilizador>(m_listaUtilizadores);
             lstUtilizadores.remove(uOriginal);
             lstUtilizadores.add(uClone);
-            if (validaLista(lstUtilizadores)) {
+            if (validaLista(lstUtilizadores, uClone)) {
                 uOriginal.setNome(uClone.getNome());
                 uOriginal.setEmail(uClone.getEmail());
                 uOriginal.setUsername(uClone.getUsername());
                 uOriginal.setPassword(uClone.getPassword());
+            }else{
+                return false;
             }
             return true;
         }
@@ -86,8 +88,15 @@ public class RegistoUtilizadores {
         return m_listaUtilizadores;
     }
 
-    private boolean validaLista(List<Utilizador> lista) {
+    private boolean validaLista(List<Utilizador> lista, Utilizador clone) {
         System.out.println("RegistoUtilizadores: validaLista: " + lista.toString());
+        for(Utilizador uti : lista){
+            if(clone.getEmail().equals(uti.getUsername())){
+                throw new IllegalArgumentException("O Username já existe!");
+            }else if(clone.getUsername().equals(uti.getEmail())){
+                throw new IllegalArgumentException("O Email já existe!");
+            }
+        }
         return true;
     }
 }

@@ -172,7 +172,15 @@ public class AlterarUtilizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelar_btActionPerformed
 
     private void confirmar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_btActionPerformed
-        
+        try{
+            controller.alterarDados(this.nome_txt.toString(), username_txt.toString(), email_txt.toString(), password_txt.toString());
+            
+            JOptionPane.showMessageDialog(rootPane, "Utilizador alterado com sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            
+        }catch(IllegalArgumentException e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_confirmar_btActionPerformed
 
     /**
