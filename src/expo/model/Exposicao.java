@@ -178,8 +178,7 @@ public class Exposicao {
     }
 
     private boolean validaMembroFAE(FAE fae) {
-        if (fae.valida()) {
-            // Introduzir as validações aqui
+        if (fae.valida() && !this.m_lFAEs.contains(fae)) {
             return true;
         }
         return false;
