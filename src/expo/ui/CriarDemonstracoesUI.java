@@ -34,6 +34,7 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
         this.centro=ce;
         this.organizador=utl;
         controller=new CriarDemonstracoesController(centro);
+        controller.novaDemonstracao();
         modeloListaRecursosAdicionados= new DefaultListModel();
         modeloListaRecursos= new DefaultListModel();
         jListListaRecursos.setModel(modeloListaRecursos);
@@ -222,8 +223,8 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAdicionarRecursoActionPerformed
 
     private void jButtonRegistarDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarDemonstracaoActionPerformed
-        
         controller.setDados(jTextFieldCodigoDemonstracao.getText(),jTextAreaDescricaoDemonstracao.getText());
+        controller.registaDemonstracao();
     }//GEN-LAST:event_jButtonRegistarDemonstracaoActionPerformed
     
      private boolean escolherEvento() {
@@ -247,6 +248,7 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
         }
         return escolheeventos;
     }
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarRecurso;
