@@ -13,7 +13,7 @@ public class Decisao {
     private final Candidatura m_oCCandidatura;
     private final FAE m_oFfae;
     private Boolean m_BDecidida;
-    private Boolean m_oBDecisao;
+    private String m_oBDecisao;
     private String m_oSTexto;
     
     public Decisao(Candidatura c, FAE fae)
@@ -23,7 +23,7 @@ public class Decisao {
         this.m_BDecidida=false;
         
     }
-    public void setDecisao(Boolean dec) {
+    public void setDecisao(String dec) {
        this.m_oBDecisao=dec;
     }  
 
