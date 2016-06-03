@@ -16,7 +16,7 @@ public class Demonstracao {
     private String m_descricao;
     private ListaRecursosDemonstracao listaDemonstracoes;
     
-    public Demonstracao(){
+    public Demonstracao(){ 
         this.m_descricao="Sem descrição";
         this.listaDemonstracoes=new ListaRecursosDemonstracao(this);
     }
