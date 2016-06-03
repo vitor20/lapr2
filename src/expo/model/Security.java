@@ -19,7 +19,7 @@ public class Security {
     protected char[] coded = new char[alfabeto.length];
     protected char[] decoded = new char[alfabeto.length];
 
-    public int Security(String pass) {
+    public int Security() {
         for (int i = 0; i < alfabeto.length; i++) {
             coded[i] = alfabeto[(i + shift) % alfabeto.length];
         }
@@ -27,5 +27,17 @@ public class Security {
             decoded[coded[i] - 'A'] = alfabeto[i];
         }
         return 0;
+    }
+    
+    public String encrypt(String pw){
+        char[] password = pw.toCharArray();
+        for (int i = 0; i < password.length; i++)
+        {
+            if(Character.isUpperCase(password[i]))
+            {
+                password[i] = coded[password[i] - 'A'];
+            }
+        }
+        return new String(password);
     }
 }
