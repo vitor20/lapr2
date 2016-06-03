@@ -5,12 +5,7 @@
  */
 package expo.controller;
 
-import expo.model.CentroExposicoes;
-import expo.model.Decisao;
-import expo.model.Exposicao;
-import expo.model.FAE;
-import expo.model.Utilizador;
-import java.util.Date;
+import expo.model.*;
 import java.util.List;
 
 /**
@@ -44,7 +39,7 @@ public class DecidirCandidaturasController {
         return this.m_exposicao.getInformacaoDaCandidaturaPorDecidir(d);
     }
       
-    public void setDecisao(Boolean dec, String textoJustificacao) {
+    public void setDecisao(String dec, String textoJustificacao) {
         this.m_decisao.setDecisao(dec);
         this.m_decisao.setTextoDescricao(textoJustificacao);
     }
