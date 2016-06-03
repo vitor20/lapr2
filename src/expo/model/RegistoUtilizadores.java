@@ -34,22 +34,11 @@ public class RegistoUtilizadores {
 
     public boolean validaUtilizador(Utilizador u) {
         ArrayList<Utilizador> lu = getUtilizadores();
-
-        if (u.getNome() == null || u.getEmail() == null || u.getPassword() == null || u.getUsername() == null) {
-            return false;
-        }
-
-        String[] tmp = u.getEmail().trim().split("@");
-        if (tmp.length != 2) {
-            return false;
-        }
-
         for (Utilizador ut : lu) {
             if (u.getUsername().equals(ut.getUsername())) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -74,7 +63,6 @@ public class RegistoUtilizadores {
         }
         return null;
     }
-    
 
     public boolean alteraUtilizador(Utilizador uOriginal, Utilizador uClone) {
         if (uClone.valida()) {
