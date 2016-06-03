@@ -207,32 +207,36 @@ public class DadosOrganizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_concluido_btActionPerformed
 
     private void adicionar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionar_btActionPerformed
-        int cont=0;
+        int cont = 0;
         if (this.username_txt.getText().equals("") && this.email_txt.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Dados por introduzir!", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (!this.email_txt.getText().equals("")) {
-            for (Utilizador uti : this.registoUti.getUtilizadores()) {
-                if (this.email_txt.toString().equalsIgnoreCase(uti.getEmail())) {
-                    controller.addOrganizador(uti);
-                    JOptionPane.showMessageDialog(null, "O Organizador foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                }
+        } else {
+            if (!this.email_txt.getText().equals("")) {
+                for (Utilizador uti : this.registoUti.getUtilizadores()) {
+                    if (this.email_txt.toString().equalsIgnoreCase(uti.getEmail())) {
+                        controller.addOrganizador(uti);
+                        JOptionPane.showMessageDialog(null, "O Organizador foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
                 cont++;
-            }
-            if(cont==this.registoUti.getUtilizadores().size()){
-                JOptionPane.showMessageDialog(rootPane, "Utilizador inexistente!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (!this.username_txt.getText().equals("")) {
-            for (Utilizador uti : this.registoUti.getUtilizadores()) {
-                if (this.email_txt.toString().equalsIgnoreCase(uti.getID())) {
-                    controller.addOrganizador(uti);
-                    JOptionPane.showMessageDialog(null, "O Organizador foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    break;
+                }
+                if (cont == this.registoUti.getUtilizadores().size()) {
+                    JOptionPane.showMessageDialog(rootPane, "Utilizador inexistente!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (!this.username_txt.getText().equals("")) {
+                for (Utilizador uti : this.registoUti.getUtilizadores()) {
+                    if (this.email_txt.toString().equalsIgnoreCase(uti.getID())) {
+                        controller.addOrganizador(uti);
+                        JOptionPane.showMessageDialog(null, "O Organizador foi adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
+                }
+                if (cont == this.registoUti.getUtilizadores().size()) {
+                    JOptionPane.showMessageDialog(rootPane, "Utilizador inexistente!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            if(cont==this.registoUti.getUtilizadores().size()){
-                JOptionPane.showMessageDialog(rootPane, "Utilizador inexistente!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
+            this.username_txt.setText("");
+            this.email_txt.setText("");
         }
     }//GEN-LAST:event_adicionar_btActionPerformed
 
