@@ -110,10 +110,24 @@ public class Utilizador {
     }
 
     public boolean valida() {
-        if (getNome()==null || getEmail()==null || getPassword()==null || getUsername()==null){
-            return false;
+        if (this.m_sNome.isEmpty() || this.m_sPassword.isEmpty() || this.m_sUserName.isEmpty() || this.m_sEmail.isEmpty()) {
+            throw new IllegalArgumentException("Existem campos em branco!");
+        } else {
+            if (!this.m_sNome.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                throw new IllegalArgumentException("Nome inválido!");
+            } else {
+                if (!this.m_sUserName.matches("[_.@a-zA-Z0-9]+")) {
+                    throw new IllegalArgumentException("Username inválido!");
+                } else {
+                    if (!this.m_sEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+                        throw new IllegalArgumentException("Email inválido!");
+                    } else {
+                        return true;
+                    }
+                }
+            }
         }
-        return true;
     }
 
     public Utilizador clone() {
