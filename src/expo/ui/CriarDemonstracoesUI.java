@@ -12,6 +12,9 @@ import expo.model.Recurso;
 import expo.model.Utilizador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -28,6 +31,7 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
     private DefaultListModel modeloListaRecursos;
     private DefaultListModel modeloListaRecursosAdicionados;
     private DefaultComboBoxModel<Exposicao> modeloComboBoxExposicao;
+    private boolean podeCriar;
     
     public CriarDemonstracoesUI(CentroExposicoes ce,Utilizador utl) {
         initComponents();
@@ -41,6 +45,10 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
         jListRecursosAdicionados.setModel(modeloListaRecursosAdicionados);
         modeloComboBoxExposicao= new DefaultComboBoxModel();
         jComboBoxExposicoes.setModel(modeloComboBoxExposicao);
+        if (escolherExposicao()) {
+            jComboBoxExposicoes.setSelectedIndex(0);
+            setVisible(true);
+        }
     }
 
     /**
@@ -223,15 +231,24 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAdicionarRecursoActionPerformed
 
     private void jButtonRegistarDemonstracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarDemonstracaoActionPerformed
-        controller.setDados(jTextFieldCodigoDemonstracao.getText(),jTextAreaDescricaoDemonstracao.getText());
-        controller.registaDemonstracao();
+        if(validaCampos()){
+            controller.setDados(jTextFieldCodigoDemonstracao.getText(),jTextAreaDescricaoDemonstracao.getText());
+            int n;
+            n = JOptionPane.showConfirmDialog(this,controller.getDemonstracaoInfo() + "\n Confirma os dados introduzidos?","Criar Demonstração",JOptionPane.YES_NO_OPTION);
+            if (controller.registaDemonstracao() && n == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Demonstração criada", "Criar Demonstração", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocorreu um ERRO ao criar Demonstração!!!", "Criar Demonstração", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonRegistarDemonstracaoActionPerformed
     
-     private boolean escolherEvento() {
-        boolean escolheeventos = true;
+    private boolean escolherExposicao() {
+        boolean escolheexposicao = true;
 
         if (controller.getListaExposiçoesOrganizador(organizador.getID()).isEmpty()) {
-            escolheeventos = false;
+            escolheexposicao = false;
             JOptionPane.showMessageDialog(null, "Não existem exposições disponíveis!", "Criar Demonstração", JOptionPane.WARNING_MESSAGE);
             dispose();
         } else {
@@ -246,9 +263,22 @@ public class CriarDemonstracoesUI extends javax.swing.JFrame {
                 });
             }
         }
-        return escolheeventos;
+        return escolheexposicao;
     }
      
+    public boolean validaCampos() {
+        podeCriar = true;
+        if (jTextFieldCodigoDemonstracao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor insira codigo da demonstração!", "Criar demontração", JOptionPane.WARNING_MESSAGE);
+            podeCriar = false;
+            jTextFieldCodigoDemonstracao.requestFocus();
+        } else if (jTextAreaDescricaoDemonstracao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor insira descrição da demonstração!", "Criar demontração", JOptionPane.WARNING_MESSAGE);
+            podeCriar = false;
+            jTextAreaDescricaoDemonstracao.requestFocus();
+        }
+        return podeCriar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarRecurso;
