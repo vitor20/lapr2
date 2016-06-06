@@ -42,7 +42,7 @@ public class RegistoUtilizadores {
         return true;
     }
 
-    private boolean addUtilizador(Utilizador u) {
+    public boolean addUtilizador(Utilizador u) {
         return m_listaUtilizadores.add(u);
     }
 
