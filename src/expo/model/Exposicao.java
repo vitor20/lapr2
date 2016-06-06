@@ -26,14 +26,12 @@ public class Exposicao {
     private String local;
     private final List<Organizador> m_lOrganizadores;
     private final List<FAE> m_lFAEs;
-    private final List<Decisao> m_lDecisoes;
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
     private List<Atribuicao> listaAtribuicoes;
 
     public Exposicao() {
         this.m_lOrganizadores = new ArrayList<>();
-        this.m_lDecisoes = new ArrayList<>();
         this.m_lFAEs = new ArrayList<>();
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaDemonstracoes = new ListaDemonstracoes();
@@ -88,18 +86,6 @@ public class Exposicao {
         return null;
     }
 
-    public List<Decisao> getListaCandidaturaPorDecidir(FAE fae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getInformacaoDaCandidaturaPorDecidir(Decisao d) {
-        return this.m_lDecisoes.get(m_lDecisoes.indexOf(d)).getInfoCandidatura();
-    }
-
-    public void registaDecisao(Decisao d) {
-        this.m_lDecisoes.get(m_lDecisoes.indexOf(d)).setDecidida();
-    }
-
     public void addOrganizador(Utilizador u) {
         Organizador org = new Organizador();
         org.setUtilizador(u);
@@ -110,14 +96,6 @@ public class Exposicao {
 
     public boolean validaOrganizador(Organizador o) {
         if (o.valida()) {
-            // Introduzir as validações aqui
-            return true;
-        }
-        return false;
-    }
-
-    public boolean validaDecisao(Decisao d) {
-        if (d.valida()) {
             // Introduzir as validações aqui
             return true;
         }
@@ -225,5 +203,14 @@ public class Exposicao {
 
     public void addAtribuicoes(List<Atribuicao> atrs) {
         listaAtribuicoes.addAll(atrs);
+    }
+
+    public boolean hasFAE(String id) {
+        for (FAE fae : m_lFAEs) {
+            if (fae.getUtilizador().hasID(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
