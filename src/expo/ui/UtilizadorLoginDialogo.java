@@ -175,6 +175,10 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
         u = null;
         dispose();
     }
+    
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt){
+        new RegistoUtilizadorUI(centor);
+    }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
 

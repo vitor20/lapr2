@@ -40,4 +40,8 @@ public class Security {
         }
         return new String(password);
     }
+    
+    public String decrypt (String pw){
+        return "";
+    }
 }
