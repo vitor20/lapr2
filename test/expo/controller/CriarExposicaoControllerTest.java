@@ -84,6 +84,7 @@ public class CriarExposicaoControllerTest {
         CentroExposicoes ce = new CentroExposicoes();
         CriarExposicaoController instance = new CriarExposicaoController(ce);
         
+        Exposicao expo = instance.novaExposicao();
         Utilizador u = new Utilizador("nome", "email@gmail.com", "username", "password");
         ce.getRegistoUtilizadores().addUtilizador(u);
         
@@ -99,12 +100,26 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testValidaExposicao() {
         System.out.println("validaExposicao");
-        CriarExposicaoController instance = null;
-        boolean expResult = false;
+        CentroExposicoes ce = new CentroExposicoes();
+        CriarExposicaoController instance = new CriarExposicaoController(ce);
+        
+        Exposicao expo = instance.novaExposicao();
+        
+        Date inicio_expo = new Date(2016, 8, 20);
+        Date fim_expo = new Date(2016, 9, 30);
+        
+        Date inicio_sub = new Date(2016, 8, 22);
+        Date fim_sub = new Date(2016, 8, 25);
+        
+        expo.setTitulo("titulo");
+        expo.setDescritivo("descricao");
+        expo.setPeriodo(inicio_expo, fim_expo);
+        expo.setPeriodoSubmissao(inicio_sub, fim_sub);
+        expo.setLocal("local");
+        
+        boolean expResult = true;
         boolean result = instance.validaExposicao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -113,12 +128,26 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testRegistaExposicao() {
         System.out.println("registaExposicao");
-        CriarExposicaoController instance = null;
-        Exposicao expResult = null;
+        CentroExposicoes ce = new CentroExposicoes();
+        CriarExposicaoController instance = new CriarExposicaoController(ce);
+        
+        Exposicao expo = instance.novaExposicao();
+        
+        Date inicio_expo = new Date(2016, 8, 20);
+        Date fim_expo = new Date(2016, 9, 30);
+        
+        Date inicio_sub = new Date(2016, 8, 22);
+        Date fim_sub = new Date(2016, 8, 25);
+        
+        expo.setTitulo("titulo");
+        expo.setDescritivo("descricao");
+        expo.setPeriodo(inicio_expo, fim_expo);
+        expo.setPeriodoSubmissao(inicio_sub, fim_sub);
+        expo.setLocal("local");
+        
+        Exposicao expResult = expo;
         Exposicao result = instance.registaExposicao();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -127,12 +156,17 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testGetExposicaoString() {
         System.out.println("getExposicaoString");
-        CriarExposicaoController instance = null;
-        String expResult = "";
+        CentroExposicoes ce = new CentroExposicoes();
+        CriarExposicaoController instance = new CriarExposicaoController(ce);
+        
+        Exposicao expo = instance.novaExposicao();
+        
+        expo.setTitulo("titulo");
+        
         String result = instance.getExposicaoString();
+        
+        String expResult = "titulo";
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }
