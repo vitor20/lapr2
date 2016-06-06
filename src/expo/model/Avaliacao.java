@@ -16,6 +16,11 @@ public class Avaliacao {
     private Candidatura candidatura;
     private String decisao;
     private String justificacao;
+    private int conhecimentoFae;
+    private int adequacaoExp;
+    private int adequacaoDem;
+    private int adequacaoNConvites;
+    private int recGlobal;
 
     public Avaliacao() {
 
@@ -69,6 +74,46 @@ public class Avaliacao {
         Avaliacao outraAvaliacao = (Avaliacao) a;
 
         return candidatura.equals(outraAvaliacao.candidatura);
+    }
+
+    public int getConhecimentoFae() {
+        return conhecimentoFae;
+    }
+
+    public int getAdequacaoExp() {
+        return adequacaoExp;
+    }
+
+    public int getAdequacaoDem() {
+        return adequacaoDem;
+    }
+
+    public int getAdequacaoNConvites() {
+        return adequacaoNConvites;
+    }
+
+    public int getRecGlobal() {
+        return recGlobal;
+    }
+
+    public void setConhecimentoFae(int conhecimentoFae) {
+        this.conhecimentoFae = conhecimentoFae;
+    }
+
+    public void setAdequacaoExp(int adequacaoExp) {
+        this.adequacaoExp = adequacaoExp;
+    }
+
+    public void setAdequacaoDem(int adequacaoDem) {
+        this.adequacaoDem = adequacaoDem;
+    }
+
+    public void setAdequacaoNConvites(int adequacaoNConvites) {
+        this.adequacaoNConvites = adequacaoNConvites;
+    }
+
+    public void setRecGlobal(int recGlobal) {
+        this.recGlobal = recGlobal;
     }
 
 }
