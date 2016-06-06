@@ -9,16 +9,18 @@ import java.util.List;
 public class CentroExposicoes {
 
     private final List<MecanismoAtribuicao> listaMecanismos;
-    private RegistoUtilizadores m_RegistoUtilizadores;
     private final List<Utilizador> m_lUtilizadores;
+    private ArrayList<GestorDeExposicoes> listaGestores;
+    private RegistoUtilizadores m_RegistoUtilizadores;
     private RegistoExposicoes registo_expo;
     private RegistoRecurso registo_recurso;
 
     public CentroExposicoes() {
         m_RegistoUtilizadores = new RegistoUtilizadores();
-        this.m_lUtilizadores = new ArrayList<>();
         this.registo_expo = new RegistoExposicoes();
+        this.m_lUtilizadores = new ArrayList<>();
         listaMecanismos = new ArrayList<>();
+        listaGestores = new ArrayList<>();
         fillInData();
     }
 
