@@ -87,7 +87,7 @@ public class Exposicao {
     }
 
     public void addOrganizador(Utilizador u) {
-        Organizador org = new Organizador();
+        Organizador org = new Organizador(u);
         org.setUtilizador(u);
         if (validaOrganizador(org)) {
             addOrganizador(org);
@@ -121,14 +121,15 @@ public class Exposicao {
 
     @Override
     public String toString() {
-        String sTxt;
-        sTxt = String.format("%s;%s;%s;%s%s;\n", this.titulo, this.descricao, this.dataInicio.toString(), this.dataFim.toString(), this.local);
-
-        for (Organizador org : this.m_lOrganizadores) {
-            sTxt += String.format("%s \n", org.toString());
-        }
-
-        return sTxt;
+        return this.titulo;
+//        String sTxt;
+//        sTxt = String.format("%s;%s;%s;%s%s;\n", this.titulo, this.descricao, this.dataInicio.toString(), this.dataFim.toString(), this.local);
+//
+//        for (Organizador org : this.m_lOrganizadores) {
+//            sTxt += String.format("%s \n", org.toString());
+//        }
+//
+//        return sTxt;
     }
 
     public boolean hasOrganizador(String id) {
