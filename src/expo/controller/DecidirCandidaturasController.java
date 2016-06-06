@@ -14,7 +14,8 @@ import java.util.List;
  * @author cferreira
  */
 public class DecidirCandidaturasController {
-  private CentroExposicoes ce;
+
+    private CentroExposicoes ce;
     Candidatura c;
     Atribuicao a;
 
@@ -34,8 +35,13 @@ public class DecidirCandidaturasController {
         a = at;
     }
 
-    public void setDados(String decisao, String justificacao) {
+    public void setDados(String decisao, String justificacao, int conhecimentoFae, int adequacaoExp, int adequacaoDem, int adequacaoNConvites, int recGlobal) {
         a.getAvaliacao().setDecisao(decisao);
         a.getAvaliacao().setJustificacao(justificacao);
+        a.getAvaliacao().setConhecimentoFae(conhecimentoFae);
+        a.getAvaliacao().setAdequacaoExp(adequacaoExp);
+        a.getAvaliacao().setAdequacaoDem(adequacaoDem);
+        a.getAvaliacao().setAdequacaoNConvites(adequacaoNConvites);
+        a.getAvaliacao().setRecGlobal(recGlobal);
     }
 }
