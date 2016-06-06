@@ -15,10 +15,34 @@ import java.util.List;
 public class RegistoRecurso {
     
     private List<Recurso> listaRecursos;
-    private Recurso rec;
         
     public RegistoRecurso(){
         listaRecursos=new ArrayList<>();
+    }
+    
+    public Recurso novoRecurso(String descricao){
+        Recurso rec=new Recurso(descricao);
+        if(rec.valida()){
+            return rec;
+        }
+        return null;
+    }
+    
+    public boolean registaRecurso(Recurso rec){
+        if(this.validaRecurso(rec)){
+            this.listaRecursos.add(rec);
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean validaRecurso(Recurso rec){
+       for(Recurso re : this.listaRecursos){
+           if(re.equals(rec)){
+               return false;
+           }
+       }
+       return true;
     }
     
     public List<Recurso> getListaRecursos(){
