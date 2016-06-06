@@ -92,10 +92,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField1.addActionListener(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                jTextField1ActionPerformed(evt);&#xa;            }&#xa;        });"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTextField1.setColumns(16);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordField1">
       <Properties>

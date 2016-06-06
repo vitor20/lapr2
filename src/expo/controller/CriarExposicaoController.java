@@ -37,12 +37,12 @@ public class CriarExposicaoController {
         this.m_exposicao.setLocal(sLocal);
     }
 
-    public List<Utilizador> getListaUtilizadores() {
-        return this.centro_exp.getUtilizadores();
-    }
+//    public List<Utilizador> getListaUtilizadores() {
+//        return this.centro_exp.getUtilizadores();
+//    }
 
-    public void addOrganizador(Utilizador u) {
-        this.m_exposicao.addOrganizador(u);
+    public boolean addOrganizador(Utilizador u) {
+        return this.m_exposicao.getListaOrganizadores().addOrganizador(u);
     }
 
     public boolean validaExposicao() {
