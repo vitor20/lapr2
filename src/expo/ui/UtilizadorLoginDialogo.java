@@ -15,7 +15,10 @@ import javax.swing.JOptionPane;
  * @author Afonso S
  */
 public class UtilizadorLoginDialogo extends javax.swing.JDialog {
+
     private CentroExposicoes centor;
+    private Utilizador utl;
+
     public UtilizadorLoginDialogo(java.awt.Frame parent, boolean modal, RegistoUtilizadores ru, String filePath) {
         super(parent, modal);
         this.ru = ru;
@@ -45,13 +48,7 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
 
         jLabel2.setText("Password");
 
-        jTextField1.setColumns(16);
         jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -126,6 +123,19 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Insira username.", "Login", JOptionPane.WARNING_MESSAGE);
+            jTextField1.requestFocus();
+        } else if (jPasswordField1.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(this, "Insira password.", "Login", JOptionPane.WARNING_MESSAGE);
+            jPasswordField1.requestFocus();
+        } else if (!getUtilizador()) {
+            JOptionPane.showMessageDialog(this, "Utilizador não existe.", "Login", JOptionPane.WARNING_MESSAGE);
+        } else if (!utl.getPassword().equals(new String(jPasswordField1.getPassword()))) {
+            JOptionPane.showMessageDialog(this, "Password incorreta.", "Login", JOptionPane.WARNING_MESSAGE);
+        } else {
+            dispose();
+        }
 //        boolean b = true;
 //        u = ru.getUtilizadorByID(jTextField1.getText());
 //        if (u != null) {
@@ -172,24 +182,30 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        u = null;
+        utl = null;
         dispose();
     }
-    
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt){
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         new RegistoUtilizadorUI(centor);
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
-    public Utilizador getUtilizador() {
-        return u;
+//    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+//
+//    }
+    private boolean getUtilizador() {
+        boolean IsUtilizador = false;
+        for (Utilizador utl : centor.getRegistoUtilizadores().getUtilizadores()) {
+            if (utl.getUsername().equals(jTextField1.getText())) {
+                this.utl = utl;
+                IsUtilizador = true;
+                break;
+            }
+        }
+        return IsUtilizador;
     }
 
     private RegistoUtilizadores ru;
-    public Utilizador u;
     private String filePath;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
