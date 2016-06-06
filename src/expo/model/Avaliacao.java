@@ -5,13 +5,13 @@
  */
 package expo.model;
 
-import java.io.Serializable;
+
 
 /**
  *
  * @author Pedro Santos
  */
-public class Avaliacao implements Serializable {
+public class Avaliacao {
 
     private Candidatura candidatura;
     private String decisao;

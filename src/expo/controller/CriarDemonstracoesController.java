@@ -61,10 +61,13 @@ public class CriarDemonstracoesController {
           this.listaRecursoDemonstracao.addRecurso(rec);
       }
       
-      public void registaDemonstracao(){
-          this.m_listaDemonstracoes.addDemonstracao(demonstracao);
+      public boolean registaDemonstracao(){
+          return this.m_listaDemonstracoes.addDemonstracao(demonstracao);
       }
       
+      public String getDemonstracaoInfo(){
+          return this.demonstracao.toString();
+      }
 
     
 }

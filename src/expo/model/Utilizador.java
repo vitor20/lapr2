@@ -7,8 +7,6 @@ public class Utilizador {
     private String m_sUserName;
     private String m_sPassword;
     private Boolean m_bRegistado;
-    private int numeroTabela;
-    private int nrCharsPassw;
 
     public Utilizador() {
         new Utilizador(null, null, null, null);
@@ -70,14 +68,6 @@ public class Utilizador {
         }
     }
 
-    public int getNumeroTabela() {
-        return numeroTabela;
-    }
-
-    public void setNumeroTabela(int numeroTabela) {
-        this.numeroTabela = numeroTabela;
-    }
-
     public String getPassword() {
         return m_sPassword;
     }
@@ -86,14 +76,6 @@ public class Utilizador {
         if (password != null) {
             this.m_sPassword = password;
         }
-    }
-
-    public int getNrCharsPassw() {
-        return nrCharsPassw;
-    }
-
-    public void setNrCharsPassw(int nrCharsPassw) {
-        this.nrCharsPassw = nrCharsPassw;
     }
 
     public Boolean getRegistado() {
@@ -110,10 +92,24 @@ public class Utilizador {
     }
 
     public boolean valida() {
-        if (getNome()==null || getEmail()==null || getPassword()==null || getUsername()==null){
-            return false;
+        if (this.m_sNome.isEmpty() || this.m_sPassword.isEmpty() || this.m_sUserName.isEmpty() || this.m_sEmail.isEmpty()) {
+            throw new IllegalArgumentException("Existem campos em branco!");
+        } else {
+            if (!this.m_sNome.replaceAll(" ", "").matches("[a-zA-Z]+")) {
+                throw new IllegalArgumentException("Nome inválido!");
+            } else {
+                if (!this.m_sUserName.matches("[_.@a-zA-Z0-9]+")) {
+                    throw new IllegalArgumentException("Username inválido!");
+                } else {
+                    if (!this.m_sEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+                        throw new IllegalArgumentException("Email inválido!");
+                    } else {
+                        return true;
+                    }
+                }
+            }
         }
-        return true;
     }
 
     public Utilizador clone() {

@@ -7,6 +7,7 @@ package expo.ui;
 
 import expo.controller.RegistarUtilizadorController;
 import expo.model.CentroExposicoes;
+import expo.model.Utilizador;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,7 @@ public class RegistoUtilizadorUI extends javax.swing.JFrame {
 
     private CentroExposicoes m_centro;
     private RegistarUtilizadorController m_controller;
+    private Utilizador uti;
     
     public RegistoUtilizadorUI(CentroExposicoes centro) {
         super("Registar utilizador");
@@ -24,7 +26,7 @@ public class RegistoUtilizadorUI extends javax.swing.JFrame {
         this.m_centro=centro;
         setVisible(true);
         m_controller=new RegistarUtilizadorController(this.m_centro);
-        m_controller.novoUtilizador();
+        this.uti = m_controller.novoUtilizador();
         
         
     }

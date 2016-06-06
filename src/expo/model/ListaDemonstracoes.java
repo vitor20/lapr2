@@ -36,10 +36,12 @@ public class ListaDemonstracoes {
         this.m_listDemonstracoes=lista;
     }
     
-    public void addDemonstracao(Demonstracao demo){
+    public boolean addDemonstracao(Demonstracao demo){
         if(valida(demo)){
             this.m_listDemonstracoes.add(demo);
+            return true;
         }
+        return false;
     }
     
     public boolean valida(Demonstracao demo){

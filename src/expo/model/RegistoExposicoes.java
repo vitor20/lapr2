@@ -10,16 +10,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class RegistoExposicoes {
+
     private ArrayList<Exposicao> listaExposicoes;
-    
-    public RegistoExposicoes(){
+
+    public RegistoExposicoes() {
         listaExposicoes = new ArrayList<>();
     }
-    
-    public Exposicao novaExposicao(){
+
+    public Exposicao novaExposicao() {
         return new Exposicao();
     }
-    
+
     public boolean validaExposicao(Exposicao e) {
         if (e.valida()) {
             // Introduzir as validações aqui
@@ -29,9 +30,9 @@ public class RegistoExposicoes {
     }
 
     public boolean registaExposicao(Exposicao e) {
-        if(validaExposicao(e)){
+        if (validaExposicao(e)) {
             return this.addExposicao(e);
-        }else{
+        } else {
             return false;
         }
     }
@@ -39,7 +40,7 @@ public class RegistoExposicoes {
     private boolean addExposicao(Exposicao e) {
         return this.listaExposicoes.add(e);
     }
-    
+
     public List<Exposicao> getListaExposicoesDoFAE(Utilizador u) {
         List<Exposicao> l_ExpDoFAE = new ArrayList();
 
@@ -51,7 +52,7 @@ public class RegistoExposicoes {
         }
         return l_ExpDoFAE;
     }
-    
+
     public List<Exposicao> getExposicaoOrganizador(String strId) {
         List<Exposicao> leOrganizador = new ArrayList<Exposicao>();
 
@@ -68,7 +69,18 @@ public class RegistoExposicoes {
 //        }
         return leOrganizador;
     }
-     public ArrayList<Exposicao> getExposicoes() {
+
+    public ArrayList<Exposicao> getExposicoes() {
         return listaExposicoes;
+    }
+
+    public List<Exposicao> getListaExpFAE(String id) {
+        List<Exposicao> ex = new ArrayList<>();
+        for (Exposicao e : listaExposicoes) {
+            if (e.hasFAE(id)) {
+                ex.add(e);
+            }
+        }
+        return ex;
     }
 }

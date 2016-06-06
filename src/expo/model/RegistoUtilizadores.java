@@ -14,97 +14,89 @@ import java.util.List;
  */
 public class RegistoUtilizadores {
 
-    private  ArrayList<Utilizador> m_listaUtilizadores;
-    
-    public RegistoUtilizadores()
-    {
+    private ArrayList<Utilizador> m_listaUtilizadores;
+
+    public RegistoUtilizadores() {
         m_listaUtilizadores = new ArrayList<Utilizador>();
     }
-    
-    public Utilizador novoUtilizador()
-    {
+
+    public Utilizador novoUtilizador() {
         return new Utilizador();
     }
-    
-    public boolean registaUtilizador(Utilizador u)
-    {
-        if( u.valida() && validaUtilizador(u) )
+
+    public boolean registaUtilizador(Utilizador u) {
+        if (u.valida() && validaUtilizador(u)) {
             return addUtilizador(u);
-        else
-            return false;
-    }
-    
-    public boolean validaUtilizador(Utilizador u)
-    {
-        ArrayList<Utilizador> lu = getUtilizadores();
- 
-        String [] tmp = u.getEmail().trim().split("@");
-        if (tmp.length!=2){
+        } else {
             return false;
         }
-        
-        for(Utilizador ut : lu ){
-            if (u.getUsername().equals(ut.getUsername())){
+    }
+
+    public boolean validaUtilizador(Utilizador u) {
+        ArrayList<Utilizador> lu = getUtilizadores();
+        for (Utilizador ut : lu) {
+            if (u.getUsername().equals(ut.getUsername())) {
                 return false;
             }
         }
-        
         return true;
     }
-    
-    private boolean addUtilizador(Utilizador u)
-    {
+
+    private boolean addUtilizador(Utilizador u) {
         return m_listaUtilizadores.add(u);
     }
-    
-    public Utilizador getUtilizadorByID(String strId)
-    {
-        for(Utilizador u:this.m_listaUtilizadores)
-        {
-            if (u.getUsername().equals(strId))
+
+    public Utilizador getUtilizadorByID(String strId) {
+        for (Utilizador u : this.m_listaUtilizadores) {
+            if (u.getUsername().equals(strId)) {
                 return u;
-        }
-        return null;
-    }
-    
-    public Utilizador getUtilizadorPorEmail(String strEmail)
-    {
-        for(Utilizador u:this.m_listaUtilizadores)
-        {
-            if (u.getEmail().equals(strEmail))
-                return u;
+            }
         }
         return null;
     }
 
-    public boolean alteraUtilizador(Utilizador uOriginal, Utilizador uClone)
-    {
-        if (uClone.valida())
-        {
+    public Utilizador getUtilizadorPorEmail(String strEmail) {
+        for (Utilizador u : this.m_listaUtilizadores) {
+            if (u.getEmail().equals(strEmail)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public boolean alteraUtilizador(Utilizador uOriginal, Utilizador uClone) {
+        if (uClone.valida()) {
             System.out.println("clone validado");
             List<Utilizador> lstUtilizadores = new ArrayList<Utilizador>(m_listaUtilizadores);
             lstUtilizadores.remove(uOriginal);
             lstUtilizadores.add(uClone);
-            if (validaLista(lstUtilizadores))
-            {
+            if (validaLista(lstUtilizadores, uClone)) {
                 uOriginal.setNome(uClone.getNome());
                 uOriginal.setEmail(uClone.getEmail());
                 uOriginal.setUsername(uClone.getUsername());
                 uOriginal.setPassword(uClone.getPassword());
+            }else{
+                return false;
             }
             return true;
         }
         return false;
     }
-    
-    public ArrayList<Utilizador> getUtilizadores(){
-        
+
+    public ArrayList<Utilizador> getUtilizadores() {
+
         return m_listaUtilizadores;
     }
-    
-    private boolean validaLista(List<Utilizador> lista)
-    {
+
+    private boolean validaLista(List<Utilizador> lista, Utilizador clone) {
         System.out.println("RegistoUtilizadores: validaLista: " + lista.toString());
+        for(Utilizador uti : lista){
+            if(clone.getEmail().equals(uti.getUsername())){
+                throw new IllegalArgumentException("O Username já existe!");
+            }else if(clone.getUsername().equals(uti.getEmail())){
+                throw new IllegalArgumentException("O Email já existe!");
+            }
+        }
         return true;
     }
 }
