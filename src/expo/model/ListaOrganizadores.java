@@ -22,4 +22,23 @@ public class ListaOrganizadores {
     public ArrayList<Organizador> getListaOrganizadores(){
         return this.listaOrganizadores;
     }
+    
+    public boolean addOrganizador(Utilizador uti){
+        if(uti==null){
+            return false;
+        }
+        Organizador org = new Organizador(uti);
+        
+        if(org.valida() && validaOrganizador(org)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validaOrganizador(Organizador org) {
+        if(org.getUtilizador().valida()){
+            return true;
+        }
+        return false;
+    }
 }

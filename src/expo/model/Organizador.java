@@ -3,47 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package expo.model;
 
-/**
- *
- * @author Paulo Maio <pam@isep.ipp.pt>
- */
-public class Organizador
-{
+public class Organizador {
+
     private Utilizador m_oUtilizador;
-    
-    public Organizador()
-    {
+
+    public Organizador(Utilizador uti) {
+        this.m_oUtilizador = uti;
     }
-    
-    public void setUtilizador(Utilizador u)
-    {
+
+    public void setUtilizador(Utilizador u) {
         this.m_oUtilizador = u;
     }
-    
-    public boolean valida()
-    {
-        // Introduzir as validações aqui
-        return true;
+
+    public boolean valida() {
+        if(this.m_oUtilizador.valida()){
+            return true;
+        }
+        return false;
     }
- 
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return this.m_oUtilizador.toString();
     }
 
-    public boolean isUtilizador(Utilizador u)
-    {
-        if (this.m_oUtilizador != null)
-        {
+    public boolean isUtilizador(Utilizador u) {
+        if (this.m_oUtilizador != null) {
             return this.m_oUtilizador.equals(u);
         }
         return false;
     }
-     public Utilizador getUtilizador() {
+
+    public Utilizador getUtilizador() {
         return m_oUtilizador;
     }
 }
