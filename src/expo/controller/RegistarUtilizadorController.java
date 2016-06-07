@@ -1,9 +1,9 @@
-
 package expo.controller;
 
 import expo.model.CentroExposicoes;
 import expo.model.RegistoUtilizadores;
 import expo.model.Utilizador;
+import expo.ui.UtilizadorLoginDialogo;
 
 /**
  *
@@ -15,7 +15,6 @@ public class RegistarUtilizadorController {
     private RegistoUtilizadores m_registo;
     private Utilizador m_utilizador;
 
-
     public RegistarUtilizadorController(CentroExposicoes centro) {
         m_exp = centro;
         m_registo = m_exp.getRegistoUtilizadores();
@@ -24,7 +23,6 @@ public class RegistarUtilizadorController {
     public Utilizador novoUtilizador() {
         return m_utilizador = m_registo.novoUtilizador();
     }
-
 
     public boolean setDados(String strNome, String strUsername, String strPassword, String strEmail) {
         m_utilizador.setUsername(strUsername);
@@ -36,10 +34,20 @@ public class RegistarUtilizadorController {
         return m_utilizador.valida();
     }
 
-
     public boolean registaUtilizador() {
         return m_registo.registaUtilizador(m_utilizador);
     }
 
-}
+    public boolean getUtilizador(String text) {
+        boolean IsUtilizador = false;
+        for (Utilizador utl : m_exp.getRegistoUtilizadores().getUtilizadores()) {
+            if (utl.getUsername().equals(text)) {
+                this.m_utilizador = utl;
+                IsUtilizador = true;
+                break;
+            }
+        }
+        return IsUtilizador;
+    }
 
+}
