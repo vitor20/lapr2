@@ -42,6 +42,13 @@ public class Security {
     }
     
     public String decrypt (String pw){
-        return "";
+        char[] password = pw.toCharArray();
+        for (int i = 0; i < password.length; i++) {
+            if(Character.isUpperCase(password[i])){
+                password[i] = decoded[password[i]-'A'];
+            }
+            
+        }
+        return new String(password);
     }
 }

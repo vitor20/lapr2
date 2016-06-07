@@ -20,12 +20,19 @@ public class Recurso {
         this.descricao=des;
     }
     
-    private void setDescricao(String des){
+    public void setDescricao(String des){
         this.descricao=des;
     }
     
-    private String getDescricao(){
+    public String getDescricao(){
         return this.descricao;
+    }
+    
+    public boolean valida(){
+        if(this.descricao==null){
+            return false;
+        }    
+        return true;
     }
     
     @Override

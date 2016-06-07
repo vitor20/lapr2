@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr2check;
+package expo.lapr2check;
+
+import expo.model.CentroExposicoes;
+import expo.ui.UtilizadorLoginDialogo;
 
 /**
  *
@@ -15,7 +18,13 @@ public class LAPR2CHECK {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try{
+            CentroExposicoes ce = new CentroExposicoes();
+            
+            UtilizadorLoginDialogo login = new UtilizadorLoginDialogo(ce);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
 }

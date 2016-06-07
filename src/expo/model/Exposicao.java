@@ -29,6 +29,7 @@ public class Exposicao {
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
     private List<Atribuicao> listaAtribuicoes;
+    private List<Candidatura> listaCandidaturas;
 
     public Exposicao() {
         this.m_lOrganizadores = new ArrayList<>();
@@ -36,6 +37,7 @@ public class Exposicao {
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaAtribuicoes = new ArrayList<>();
+        this.listaCandidaturas = new ArrayList<>();
     }
 
     public void setTitulo(String titulo) {
@@ -87,7 +89,7 @@ public class Exposicao {
     }
 
     public void addOrganizador(Utilizador u) {
-        Organizador org = new Organizador();
+        Organizador org = new Organizador(u);
         org.setUtilizador(u);
         if (validaOrganizador(org)) {
             addOrganizador(org);
@@ -121,14 +123,15 @@ public class Exposicao {
 
     @Override
     public String toString() {
-        String sTxt;
-        sTxt = String.format("%s;%s;%s;%s%s;\n", this.titulo, this.descricao, this.dataInicio.toString(), this.dataFim.toString(), this.local);
-
-        for (Organizador org : this.m_lOrganizadores) {
-            sTxt += String.format("%s \n", org.toString());
-        }
-
-        return sTxt;
+        return this.titulo;
+//        String sTxt;
+//        sTxt = String.format("%s;%s;%s;%s%s;\n", this.titulo, this.descricao, this.dataInicio.toString(), this.dataFim.toString(), this.local);
+//
+//        for (Organizador org : this.m_lOrganizadores) {
+//            sTxt += String.format("%s \n", org.toString());
+//        }
+//
+//        return sTxt;
     }
 
     public boolean hasOrganizador(String id) {
@@ -211,5 +214,29 @@ public class Exposicao {
             }
         }
         return false;
+    }
+
+    public Candidatura novaCandidatura() {
+        return new Candidatura();
+    }
+
+    public boolean addCandidatura(Candidatura c) {
+        return listaCandidaturas.add(c);
+    }
+
+    private boolean validaCandidatura(Candidatura candidatura) {
+        return candidatura.valida() && !listaCandidaturas.contains(candidatura);
+    }
+
+    public boolean registaCandidatura(Candidatura candidatura) {
+        if (validaCandidatura(candidatura)) {
+            return addCandidatura(candidatura);
+        } else {
+            return false;
+        }
+    }
+
+    public ListaDemonstracoes getDemonstracoes() {
+        return listaDemonstracoes;
     }
 }
