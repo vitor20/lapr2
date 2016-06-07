@@ -44,8 +44,8 @@ public class CentroExposicoes {
 //        m_lUtilizadores.add(u);
 //    }
 
-    public List<Utilizador> getUtilizadores() {
-        return this.m_lUtilizadores;
+    public ArrayList<Utilizador> getUtilizadores() {
+        return this.m_RegistoUtilizadores.getUtilizadores();
     }
 
     private void fillInData() {
