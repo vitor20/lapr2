@@ -76,4 +76,7 @@ public class RegistarCandidaturaController {
     public List<Exposicao> getListExposicoes() {
         return ce.getRegistoExposicoes().getExposicoes();
     }
+    public void addPalavrasChaves (String palavrasChaves) {
+        c.addPalavrasChaves(palavrasChaves);
+    }
 }
