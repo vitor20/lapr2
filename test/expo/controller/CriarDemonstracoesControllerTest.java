@@ -7,8 +7,11 @@ package expo.controller;
 
 import expo.model.CentroExposicoes;
 import expo.model.Exposicao;
+import expo.model.Organizador;
 import expo.model.Recurso;
 import expo.model.RegistoRecurso;
+import expo.model.Utilizador;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -24,9 +27,22 @@ import static org.junit.Assert.*;
 public class CriarDemonstracoesControllerTest {
     
     private CentroExposicoes centro;
+    private CriarDemonstracoesController controller;
+    private Utilizador ut;
+    private Exposicao exp;
+    private Organizador org;
+    
     
     
    public CriarDemonstracoesControllerTest() {
+       centro=new CentroExposicoes();
+       ut=new Utilizador("vitor","vitor@isep.pt","vc","vc");
+       exp=new Exposicao();
+       org = new Organizador(ut);
+       exp.addOrganizador(ut);
+       centro.getRegistoUtilizadores().addUtilizador(ut);
+       centro.getRegistoExposicoes().registaExposicao(exp);
+       controller=new CriarDemonstracoesController(centro);
    }
     
     @BeforeClass
@@ -52,12 +68,12 @@ public class CriarDemonstracoesControllerTest {
     public void testGetListaExposiçoesOrganizador() {
         System.out.println("getListaExposi\u00e7oesOrganizador");
         String strID = "vc";
-        CriarDemonstracoesController instance = null;
-        List<Exposicao> expResult = null;
+        List<Exposicao> ls = new ArrayList<>();
+        ls.add(exp);
+        CriarDemonstracoesController instance = controller;
+        List<Exposicao> expResult = ls;
         List<Exposicao> result = instance.getListaExposiçoesOrganizador(strID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
