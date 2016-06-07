@@ -29,6 +29,17 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
         setVisible(true);
 
     }
+        private boolean getUtilizador() {
+        boolean IsUtilizador = false;
+        for (Utilizador utl : centor.getRegistoUtilizadores().getUtilizadores()) {
+            if (utl.getUsername().equals(jTextField1.getText())) {
+                this.utl = utl;
+                IsUtilizador = true;
+                break;
+            }
+        }
+        return IsUtilizador;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -204,17 +215,7 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
 //    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
 //
 //    }
-    private boolean getUtilizador() {
-        boolean IsUtilizador = false;
-        for (Utilizador utl : centor.getRegistoUtilizadores().getUtilizadores()) {
-            if (utl.getUsername().equals(jTextField1.getText())) {
-                this.utl = utl;
-                IsUtilizador = true;
-                break;
-            }
-        }
-        return IsUtilizador;
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
