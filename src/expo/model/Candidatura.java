@@ -23,6 +23,7 @@ public class Candidatura {
     private List<Produto> produtos;
     private List<Demonstracao> demonstracoes;
     private static int contagem;
+    private List<PalavrasChaves> palavrasChaves;
 
     public Candidatura() {
         codigo = contagem;
@@ -137,6 +138,15 @@ public class Candidatura {
 
         return nome.equalsIgnoreCase(outraCandidatura.nome) && morada.equals(outraCandidatura.morada) && telemovel == outraCandidatura.telemovel
                 && qtdConvites == outraCandidatura.qtdConvites && areaPretendida == outraCandidatura.areaPretendida;
+    }
+       public void setPalavrasChaves(List<PalavrasChaves> palavrasChaves) {
+        this.palavrasChaves = palavrasChaves;
+    }
+     public List<PalavrasChaves> getPalavrasChaves() {
+        return palavrasChaves;
+    }
+    public void addPalavrasChaves(String palavra) {
+        palavrasChaves.add(new PalavrasChaves(palavra));
     }
 
 }
