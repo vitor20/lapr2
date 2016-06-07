@@ -17,6 +17,10 @@ public class Organizador {
         this.m_oUtilizador = u;
     }
 
+    public String getUsernameOrganizador(){
+        return this.m_oUtilizador.getUsername();
+    }
+    
     public boolean valida() {
         if(this.m_oUtilizador.valida()){
             return true;
