@@ -56,17 +56,13 @@ public class RegistoExposicoes {
     public List<Exposicao> getExposicaoOrganizador(String strId) {
         List<Exposicao> leOrganizador = new ArrayList<Exposicao>();
 
-//        Utilizador u = getUtilizador(strId);
-//
-//        if (u != null) {
-//            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
-//                Exposicao e = it.next();
-//
-//                if (e.hasOrganizador(u)) {
-//                    leOrganizador.add(e);
-//                }
-//            }
-//        }
+        for(Exposicao e : listaExposicoes){
+            for(Organizador org : e.getListaOrganizadores().getListaOrganizadores()){
+                if(org.getUsernameOrganizador().equals(strId)){
+                    leOrganizador.add(e);
+                }
+            }
+        }
         return leOrganizador;
     }
 
