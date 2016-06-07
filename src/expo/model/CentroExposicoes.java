@@ -36,6 +36,40 @@ public class CentroExposicoes {
 //        return false;
 //    }
 
+    public RegistoUtilizadores getRegistoUtilizadores() {
+        return this.m_RegistoUtilizadores;
+    }
+
+    public RegistoRecurso getRegistoRecurso() {
+        return this.registo_recurso;
+    }
+
+    public RegistoExposicoes getRegistoExposicoes() {
+        return this.registo_expo;
+    }
+    
+    public ArrayList<Utilizador> getUtilizadores() {
+        return this.m_RegistoUtilizadores.getUtilizadores();
+    }
+    
+    public boolean utilizadorConfirmado(String username) {
+        for (Utilizador utl : getRegistoUtilizadores().getUtilizadores()) {
+            if (utl.getUsername().equals(username) && utl.getRegistado()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean verificaUtilizador(String username, String password) {
+        for (Utilizador u : getUtilizadores()) {
+            if (username.equals(u.getUsername()) && password.equals(u.getPassword())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private boolean validaUtilizador(Utilizador u) {
         return !m_lUtilizadores.contains(u);
     }
@@ -44,9 +78,6 @@ public class CentroExposicoes {
 //        m_lUtilizadores.add(u);
 //    }
 
-    public ArrayList<Utilizador> getUtilizadores() {
-        return this.m_RegistoUtilizadores.getUtilizadores();
-    }
 
     private void fillInData() {
         // Dados de Teste
@@ -85,23 +116,12 @@ public class CentroExposicoes {
         return null;
     }
 
-    public List<MecanismoAtribuicao> getListaMecanismos() {
-        return listaMecanismos;
-    }
-
     public void confirmaRegistoUtilizador(Utilizador u) {
         u.setRegistado(true);
     }
 
-    public RegistoUtilizadores getRegistoUtilizadores() {
-        return this.m_RegistoUtilizadores;
-    }
-
-    public RegistoRecurso getRegistoRecurso() {
-        return this.registo_recurso;
-    }
-
-    public RegistoExposicoes getRegistoExposicoes() {
-        return this.registo_expo;
+    
+    public List<MecanismoAtribuicao> getListaMecanismos() {
+        return listaMecanismos;
     }
 }

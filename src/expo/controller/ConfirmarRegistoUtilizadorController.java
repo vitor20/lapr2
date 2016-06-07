@@ -28,6 +28,5 @@ public class ConfirmarRegistoUtilizadorController {
     
     public void confirmaRegistoUtilizador(){
         m_ce.confirmaRegistoUtilizador(m_utilizadorAConfirmar);
-    }
-    
+    }    
 }

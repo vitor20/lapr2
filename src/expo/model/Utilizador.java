@@ -6,7 +6,7 @@ public class Utilizador {
     private String m_sEmail;
     private String m_sUserName;
     private String m_sPassword;
-    private Boolean m_bRegistado;
+    private boolean boolean_registado;
 
     public Utilizador() {
         new Utilizador(null, null, null, null);
@@ -17,6 +17,7 @@ public class Utilizador {
         setEmail(m_sEmail);
         setUsername(m_sUsername);
         setPassword(m_sPassword);
+        this.boolean_registado = false;
 //        this.m_sNome = sNome;
 //        this.m_sEmail = sEmail;
 //        this.m_sUserName = sEmail;
@@ -78,12 +79,12 @@ public class Utilizador {
         }
     }
 
-    public Boolean getRegistado() {
-        return m_bRegistado;
+    public boolean getRegistado() {
+        return boolean_registado;
     }
 
-    public void setRegistado(Boolean registado) {
-        this.m_bRegistado = registado;
+    public void setRegistado(boolean registado) {
+        this.boolean_registado = registado;
     }
 
     @Override

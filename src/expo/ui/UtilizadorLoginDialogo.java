@@ -29,16 +29,15 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
         setVisible(true);
 
     }
-        private boolean getUtilizador() {
-        boolean IsUtilizador = false;
+
+    private boolean getUtilizador(String username) {
         for (Utilizador utl : centor.getRegistoUtilizadores().getUtilizadores()) {
-            if (utl.getUsername().equals(jTextField1.getText())) {
+            if (utl.getUsername().equals(username) && utl.getRegistado()) {
                 this.utl = utl;
-                IsUtilizador = true;
-                break;
+                return true;
             }
         }
-        return IsUtilizador;
+        return false;
     }
 
     @SuppressWarnings("unchecked")
@@ -47,49 +46,34 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        username_txt = new javax.swing.JTextField();
+        password_txt = new javax.swing.JPasswordField();
+        login_bt = new javax.swing.JButton();
+        cancelar_bt = new javax.swing.JButton();
+        registar_bt = new javax.swing.JButton();
 
         jLabel1.setText("Username:");
 
         jLabel2.setText("Password:");
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        login_bt.setText("Login");
+        login_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                login_btActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelar_bt.setText("Cancelar");
+        cancelar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelar_btActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Registar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        registar_bt.setText("Registar");
+        registar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new RegistoUtilizadorUI(centor);
-            }
-        });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                registar_btActionPerformed(evt);
             }
         });
 
@@ -104,20 +88,20 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(login_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cancelar_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(username_txt)
+                                    .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(registar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,104 +110,62 @@ public class UtilizadorLoginDialogo extends javax.swing.JDialog {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(username_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(login_bt)
+                    .addComponent(cancelar_bt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(registar_bt)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void registar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registar_btActionPerformed
         RegistoUtilizadorUI registoUI = new RegistoUtilizadorUI(centor);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_registar_btActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextField1.getText().isEmpty()) {
+    private void login_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btActionPerformed
+        char[] pass = this.password_txt.getPassword();
+        String passString = new String(pass);
+        
+        if (username_txt.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Insira username.", "Login", JOptionPane.WARNING_MESSAGE);
-            jTextField1.requestFocus();
-        } else if (jPasswordField1.getPassword().length == 0) {
+            username_txt.requestFocus();
+        } else if (password_txt.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Insira password.", "Login", JOptionPane.WARNING_MESSAGE);
-            jPasswordField1.requestFocus();
-        } else if (!getUtilizador()) {
-            JOptionPane.showMessageDialog(this, "Utilizador não existe.", "Login", JOptionPane.WARNING_MESSAGE);
-        } else if (!utl.getPassword().equals(new String(jPasswordField1.getPassword()))) {
-            JOptionPane.showMessageDialog(this, "Password incorreta.", "Login", JOptionPane.WARNING_MESSAGE);
+            password_txt.requestFocus();
+        } else if (!(this.centor.utilizadorConfirmado(username_txt.getText()))) {
+            JOptionPane.showMessageDialog(this, "Utilizador não existe.\nCaso já se tenha registado, aguarde confirmação.", "Login", JOptionPane.WARNING_MESSAGE);
+        } else if (!this.centor.verificaUtilizador(username_txt.getText(), passString)) {
+            JOptionPane.showMessageDialog(this, "Dados de Login inválidos.", "Login", JOptionPane.WARNING_MESSAGE);
         } else {
+            this.utl = centor.getRegistoUtilizadores().getUtilizadorByID(username_txt.getText());
+            JOptionPane.showMessageDialog(rootPane, "Bem-vindo(a) " + username_txt.getText() + ", login efetuado com sucesso!", "Login", JOptionPane.INFORMATION_MESSAGE);
+            MenuUI menu = new MenuUI(this.centor, this.utl);
             dispose();
         }
-//        boolean b = true;
-//        u = ru.getUtilizadorByID(jTextField1.getText());
-//        if (u != null) {
-//            String pwd = null;
-//            String pwd2 = u.getPassword();
-//            System.out.println(pwd2);
-//            if (u.getNumeroTabela() == -1) {
-//                System.out.println("yes");
-//                pwd = jPasswordField1.getText();
-//
-//                System.out.println(pwd);
-//            } else {
-//                CodificacaoAritmetica cA = new CodificacaoAritmetica(jPasswordField1.getText(), filePath);
-//                cA.codifica();
-//                String encripted = "";
-//                int id = -1;
-//                if (cA.isEncripted()) {
-//                    pwd = cA.getValue();
-//                }
-//            }
-//            if (pwd2 != null) {
-//                if (pwd.length() == pwd2.length()) {
-//                    for (int i = 0; i < pwd2.length(); i++) {
-//                        if (pwd.charAt(i) != pwd2.charAt(i)) {
-//                            b = false;
-//                            u = null;
-//                            break;
-//                        }
-//                    }
-//                } else {
-//                    b = false;
-//                    u = null;
-//                }
-//            }
-//            if (b) {
-//                dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Password Incorrecta!");
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Utilizador Inexistente!");
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_login_btActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_btActionPerformed
         utl = null;
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-
-//    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-//
-//    }
-
+    }//GEN-LAST:event_cancelar_btActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton cancelar_bt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton login_bt;
+    private javax.swing.JPasswordField password_txt;
+    private javax.swing.JButton registar_bt;
+    private javax.swing.JTextField username_txt;
     // End of variables declaration//GEN-END:variables
 }
