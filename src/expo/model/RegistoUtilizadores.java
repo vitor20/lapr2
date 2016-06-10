@@ -88,6 +88,15 @@ public class RegistoUtilizadores {
         return m_listaUtilizadores;
     }
 
+    public Utilizador getUtilizadorInfo(String uId) {
+        for (Utilizador u : m_listaUtilizadores) {
+            if (uId.equalsIgnoreCase(u.getUsername())) {
+                return u;
+            }
+        }
+        return null;
+    }
+    
     private boolean validaLista(List<Utilizador> lista, Utilizador clone) {
         System.out.println("RegistoUtilizadores: validaLista: " + lista.toString());
         for(Utilizador uti : lista){

@@ -107,15 +107,6 @@ public class CentroExposicoes {
         return lUsers;
     }
 
-    public Utilizador getUtilizadorInfo(String uId) {
-        for (Utilizador u : m_lUtilizadores) {
-            if (uId.equalsIgnoreCase(u.getUsername())) {
-                return u;
-            }
-        }
-        return null;
-    }
-
     public void confirmaRegistoUtilizador(Utilizador u) {
         u.setRegistado(true);
     }

@@ -30,7 +30,7 @@ public class ListaOrganizadores {
         Organizador org = new Organizador(uti);
         
         if(org.valida() && validaOrganizador(org)){
-            return true;
+            return addOrganizador(org);
         }
         return false;
     }
@@ -40,5 +40,9 @@ public class ListaOrganizadores {
             return true;
         }
         return false;
+    }
+
+    private boolean addOrganizador(Organizador org) {
+        return this.listaOrganizadores.add(org);
     }
 }

@@ -22,7 +22,7 @@ public class ConfirmarRegistoUtilizadorController {
     }
     
     public Utilizador getUtilizadorInfo(String uId){
-        m_utilizadorAConfirmar = m_ce.getUtilizadorInfo(uId);
+        m_utilizadorAConfirmar = m_ce.getRegistoUtilizadores().getUtilizadorInfo(uId);
         return m_utilizadorAConfirmar;
     }
     
